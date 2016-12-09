@@ -1,0 +1,16 @@
+[
+{
+  "modid": "examplemod",
+  "name": "SubterraneanCreaturesMod",
+  "description": " Adds subterranean creatures.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ExampleDude"],
+  "credits": "JavackMan",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
