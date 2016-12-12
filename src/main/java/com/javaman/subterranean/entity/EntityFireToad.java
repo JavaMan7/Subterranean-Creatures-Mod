@@ -1,5 +1,8 @@
 package com.javaman.subterranean.entity;
 
+import com.javaman.subterranean.client.renderer.entity.EntityRenderRegister;
+import com.javaman.subterranean.client.renderer.entity.RenderFireToad;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -115,6 +118,7 @@ public class EntityFireToad extends EntityMob implements IRangedAttackMob  {
         double var13 = target.getEntityBoundingBox().minY + (double)(target.height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
         double var15 = target.posZ - this.posZ;
         this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(var11, var15)) * 180.0F / (float)Math.PI;
+        //EntityRenderRegister.FireToad.setRotationAnglesFight();
       EntitySmallFireball fLB = new EntitySmallFireball(this.worldObj, this, var11, var13, var15);
         int x = (int)this.posX;
         int y = (int)this.posY;

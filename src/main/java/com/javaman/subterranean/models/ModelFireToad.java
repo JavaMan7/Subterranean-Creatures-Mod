@@ -25,6 +25,7 @@ package com.javaman.subterranean.models;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
@@ -50,7 +51,8 @@ public class ModelFireToad extends ModelBase
     ModelRenderer jaw;
     ModelRenderer eye_1;
     ModelRenderer eye_2;
-  
+    float headYRot;
+    float headXRot;
   public ModelFireToad()
   {
     textureWidth = 128;
@@ -204,9 +206,36 @@ public class ModelFireToad extends ModelBase
     model.rotateAngleZ = z;
   }
   
-  public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5,Entity entity)
+  public void setRotationAngles(float time, float limbSwingDistance, float p_78087_3_, float headYRot, float headXRot, float p_78087_6_, Entity entity)
   {
-    super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+	  this.headXRot = headXRot;
+	  this.headYRot = headYRot;
+	  this.head.rotateAngleX = headXRot / (180F / (float)Math.PI);
+	  this.head.rotateAngleY = headYRot / (180F / (float)Math.PI);
+	  this.jaw.rotateAngleX = headXRot / (180F +80F/ (float)Math.PI);
+	  this.jaw.rotateAngleY = headYRot / (180F / (float)Math.PI);
+	  this.eye_1.rotateAngleX = headXRot / (180F / (float)Math.PI);
+	  this.eye_1.rotateAngleY = headYRot / (180F / (float)Math.PI);
+	  this.eye_2.rotateAngleX = headXRot / (180F / (float)Math.PI);
+	  this.eye_2.rotateAngleY = headYRot / (180F / (float)Math.PI);
+		 
+		 //this.body.rotateAngleX = ((float)Math.PI / 2F);
+		 
+		 //this.frontlegsec1.rotateAngleX = MathHelper.cos(time * 0.6662F) * 1.4F * limbSwingDistance;
+		 this.fls1.rotateAngleX = MathHelper.cos(time * 0.6662F) * 1.4F * limbSwingDistance;
+		 //this.backleg1.rotateAngleX = MathHelper.cos(time * 0.6662F + (float)Math.PI) * 1.4F * limbSwingDistance;
+		 //this.backleg2.rotateAngleX = MathHelper.cos(time * 0.6662F + (float)Math.PI) * 1.4F * limbSwingDistance;
+		 //this.frontlegsec2.rotateAngleX = MathHelper.cos(time * 0.6662F) * 1.4F * limbSwingDistance;
+		 this.fls2.rotateAngleX = MathHelper.cos(time * 0.6662F) * 1.4F * limbSwingDistance;
   }
+  /*public void setRotationAnglesFight()
+  {
+	  System.out.println("fire");
+	  
+	  this.jaw.rotateAngleX = headXRot / (180F -360F/ (float)Math.PI);
+	  //this.jaw.rotateAngleY = headYRot / (180F / (float)Math.PI);
+	 
+		 
+  }*/
 
 }

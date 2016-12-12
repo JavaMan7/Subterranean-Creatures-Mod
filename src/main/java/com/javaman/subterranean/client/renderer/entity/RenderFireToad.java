@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderFireToad extends RenderLiving{
 
-	private static final ResourceLocation mobTextures = new ResourceLocation(SubterraneanCreaturesMod.MODID + ":" + "textures/entitys/FireToad.png");
+	public static final ResourceLocation mobTextures = new ResourceLocation(SubterraneanCreaturesMod.MODID + ":" + "textures/entitys/FireToad.png");
 	private static final String __OBFID = "CL_00000984";
 	
 	public RenderFireToad(RenderManager renderManager, ModelBase par1ModelBase, float par2) {

@@ -11,7 +11,9 @@ import net.minecraft.world.chunk.IChunkProvider;
 public class WorldProviderSub extends WorldProvider //WorldProviderSurface
 {
 	//** Light to brightness conversion table */
-    
+	
+	private long worldTime = 18000L;
+	
 	@Override
 	public String getDimensionName() {
 		
@@ -42,7 +44,7 @@ public class WorldProviderSub extends WorldProvider //WorldProviderSurface
 	@Override
 	protected void generateLightBrightnessTable()
     {
-        float var1 = 0.1F;
+        float var1 = 0.0F;
 
         for (int var2 = 0; var2 <= 15; ++var2)
         {
