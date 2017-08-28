@@ -16,13 +16,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT) //under construction
 public final class EntityRenderRegister {
-	public static ModelFireToad FireToad = new ModelFireToad();
 	public static void registerEntityRenderer(){
-		
-		
-		
 		RenderingRegistry.registerEntityRenderingHandler(EntityWrath.class, new RenderWrath(Minecraft.getMinecraft().getRenderManager(),new ModelWrath(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityFireToad.class, new RenderFireToad(Minecraft.getMinecraft().getRenderManager(), FireToad, 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityFireToad.class, new RenderFireToad(Minecraft.getMinecraft().getRenderManager(), new ModelFireToad(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFlailSnail.class, new RenderFailSnail(Minecraft.getMinecraft().getRenderManager(),new ModelFailSnail(), 0));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFlumph.class, new RenderFlumph(Minecraft.getMinecraft().getRenderManager(),new ModelFlumph(), 0));
 		
