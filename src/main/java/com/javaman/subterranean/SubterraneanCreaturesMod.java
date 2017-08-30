@@ -1,6 +1,6 @@
 package com.javaman.subterranean;
 
-import com.javaman.subterranean.dimension.ModWorldGen;
+//import com.javaman.subterranean.dimension.ModWorldGen;
 
 
 import net.minecraftforge.fml.common.Mod;
@@ -33,7 +33,7 @@ public static CommonProxy proxy;
     {	this.proxy.init(e);
     	
 		// some example code
-    	GameRegistry.registerWorldGenerator(new ModWorldGen(), 0);
+    	//GameRegistry.registerWorldGenerator(new ModWorldGen(), 0);
         System.out.println("SubterraneanCreaturesMod >> They lurk in the Deep");
     }
     

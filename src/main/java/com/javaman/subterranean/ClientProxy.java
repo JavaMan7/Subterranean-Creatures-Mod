@@ -1,11 +1,11 @@
 package com.javaman.subterranean;
 
-import com.javaman.subteranean.client.render.blocks.BlockRenderRegister;
-import com.javaman.subteranean.client.render.items.ItemRenderRegister;
-import com.javaman.subterranean.client.renderer.entity.EntityRenderRegister;
-import com.javaman.subterranean.client.renderer.entity.RenderFireToad;
-import com.javaman.subterranean.entity.EntityFireToad;
-import com.javaman.subterranean.models.ModelFireToad;
+//import com.javaman.subteranean.client.render.blocks.BlockRenderRegister;
+//import com.javaman.subteranean.client.render.items.ItemRenderRegister;
+//import com.javaman.subterranean.client.renderer.entity.EntityRenderRegister;
+//import com.javaman.subterranean.client.renderer.entity.RenderFireToad;
+//import com.javaman.subterranean.entity.EntityFireToad;
+//import com.javaman.subterranean.models.ModelFireToad;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -23,9 +23,9 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void init(FMLInitializationEvent e) {
 		super.init(e);
-		ItemRenderRegister.registerItemRenderer();
-		BlockRenderRegister.registerBlockRenderer();
-		EntityRenderRegister.registerEntityRenderer();
+		//ItemRenderRegister.registerItemRenderer();
+		//BlockRenderRegister.registerBlockRenderer();
+		//EntityRenderRegister.registerEntityRenderer();
 		
 	}
 

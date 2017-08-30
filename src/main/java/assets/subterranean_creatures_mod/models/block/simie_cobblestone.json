@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "subterranean_creatures_mod:blocks/simie_cobblestone"
-    }
-}

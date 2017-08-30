@@ -1,14 +1,14 @@
 [
 {
   "modid": "examplemod",
-  "name": "SubterraneanCreaturesMod",
-  "description": " Adds subterranean creatures.",
+  "name": "Example Mod",
+  "description": "Example placeholder mod.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
   "authorList": ["ExampleDude"],
-  "credits": "JavackMan",
+  "credits": "The Forge and FML guys, for making this example",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
