@@ -9,6 +9,7 @@ public class BasicItem extends Item {
 		super();
 
 		this.setUnlocalizedName(unlocalizedName);
+		this.setRegistryName(unlocalizedName);
 		
 	}
 

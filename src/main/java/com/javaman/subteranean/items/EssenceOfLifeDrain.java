@@ -13,6 +13,7 @@ public class EssenceOfLifeDrain extends Item{
 		// TODO Auto-generated constructor stub
 	
 		this.setUnlocalizedName("EssenceOfLifeDrain");
+		this.setRegistryName("EssenceOfLifeDrain");
 		
 		 
 		 this.setMaxStackSize(64);

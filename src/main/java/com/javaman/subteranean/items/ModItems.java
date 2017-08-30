@@ -1,5 +1,7 @@
 package com.javaman.subteranean.items;
 
+import java.util.HashMap;
+
 import com.javaman.subterranean.SubterraneanCreaturesMod;
 
 import net.minecraft.item.Item;
@@ -12,23 +14,22 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public final class ModItems {
 
 	
-	public static void createItems() {
+	public static final HashMap<String,Item> SUBTERRANEAN_ITEMS = new HashMap<String,Item>();
+	
+	public static void registerTtem(Item item){
+		SUBTERRANEAN_ITEMS.put(item.getUnlocalizedName(), item);
+		
+		
+		
+		
 		
 		
 	}
 	
-	public static void registerTtem(){
-		
-		
-		
-		
-		
-	}
-	
-	public static void addItem(Item item)
+	public static void addItem()
 	{
 		
-		
+		registerTtem(new EssenceOfLifeDrain());
 		
 		
 	}
