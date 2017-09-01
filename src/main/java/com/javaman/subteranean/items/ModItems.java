@@ -28,7 +28,7 @@ public final class ModItems {
 	
 	public static void addItem()
 	{
-		
+		registerTtem(new FireStaff( ) );
 		registerTtem(new EssenceOfLifeDrain());
 		
 		

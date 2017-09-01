@@ -12,16 +12,22 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class SubEventHandler
@@ -41,11 +47,19 @@ random = new Random();
 
 		
 	}
-			
-			
+@SubscribeEvent
+public void EntityInteractEvent(EntityInteract e) {
+	//((EntityLivingBase) e.getEntity()).setHealth( ((EntityLivingBase) e.getEntity()).getHealth() - 10.0f );
+	
+	
+	
+	
+	
+	
+}
 		
 	
-	
+
 		
 		
 		
