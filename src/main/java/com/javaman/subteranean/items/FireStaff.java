@@ -44,7 +44,7 @@ public class FireStaff  extends  Item{
 	* Args: itemStack, world, entityPlayer
 	*/
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer entityplayer, EnumHand handIn) {
-		System.out.println("hi");
+	
 	
 	
 

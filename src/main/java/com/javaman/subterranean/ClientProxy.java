@@ -1,6 +1,7 @@
 package com.javaman.subterranean;
 
 import com.javaman.subteranean.client.render.items.ItemRenderRegister;
+import com.javaman.subterranean.client.renderer.entity.EntityRenderRegister;
 
 //import com.javaman.subteranean.client.render.blocks.BlockRenderRegister;
 //import com.javaman.subteranean.client.render.items.ItemRenderRegister;
@@ -27,7 +28,7 @@ public class ClientProxy extends CommonProxy {
 		super.init(e);
 		ItemRenderRegister.registerItemRenderer();
 		//BlockRenderRegister.registerBlockRenderer();
-		//EntityRenderRegister.registerEntityRenderer();
+	    EntityRenderRegister.registerEntityRenderer();
 		
 	}
 

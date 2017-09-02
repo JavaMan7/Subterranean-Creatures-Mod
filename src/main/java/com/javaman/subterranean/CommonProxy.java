@@ -1,6 +1,7 @@
 package com.javaman.subterranean;
 
 import com.javaman.subteranean.items.ModItems;
+import com.javaman.subterranean.entity.ModEntitys;
 import com.javaman.subtersnean.register.Register;
 
 //import com.javaman.subteranean.items.ModItems;
@@ -22,7 +23,7 @@ public class CommonProxy {
 	public void preInit(FMLPreInitializationEvent e) {
 		//ModItems.createItems();
 		//ModBlocks.createBlocks();
-		//ModEntitys.mainRegistry();
+		ModEntitys.mainRegistry();
 		//MakeProjectile.registerEntity();
 		ModItems.addItem();
 		MinecraftForge.EVENT_BUS.register(new Register());
