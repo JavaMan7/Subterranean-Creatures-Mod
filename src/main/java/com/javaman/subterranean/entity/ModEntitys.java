@@ -11,6 +11,7 @@ import com.javaman.subterranean.SubterraneanCreaturesMod;
 import com.javaman.subterranean.client.renderer.entity.EntityRenderRegister;
 import com.javaman.subterranean.client.renderer.entity.RenderSubterraneanCreatures;
 import com.javaman.subterranean.models.ModelFailSnail;
+import com.javaman.subterranean.models.ModelFireToad;
 import com.javaman.subterranean.models.ModelWrath;
 
 import net.minecraft.client.Minecraft;
@@ -34,6 +35,7 @@ public class ModEntitys {
 	public static void mainRegistry(){
 		registerEntity(EntityFlailSnail.class, "flail_snail", 0x4b0675, 0xf4a511,new ModelFailSnail());
 		registerEntity(EntityWrath.class, "wrath", 0x999999, 0xFF0000,new ModelWrath());
+		registerEntity(EntityFireToad.class, "fire_toad", 0x999999, 0xFF0000,new ModelFireToad());
 		
 		
 		createEntity(SUBTERRANEAN_MOBS);
@@ -70,6 +72,7 @@ public class ModEntitys {
 	        System.out.println(SubterraneanCreaturesMod.MODID+(String)object[5]);
 	         ResourceLocation resourceLocation= new ResourceLocation(SubterraneanCreaturesMod.MODID,(String)object[5]);
 	 		EntityRegistry.registerModEntity(resourceLocation, (Class<? extends Entity>)object[0],(String)item.getKey(),c, SubterraneanCreaturesMod.instance , 64, 1, true,(int)object[3], (int)object[4]);
+	 		
 	 		c++;
 	 		
 

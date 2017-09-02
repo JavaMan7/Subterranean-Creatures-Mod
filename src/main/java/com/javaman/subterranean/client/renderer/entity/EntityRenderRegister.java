@@ -33,9 +33,7 @@ public final class EntityRenderRegister {
 		
 		register(ModEntitys.SUBTERRANEAN_MOBS);
 		
-		//RenderingRegistry.registerEntityRenderingHandler(EntityWrath.class, new RenderWrath(Minecraft.getMinecraft().getRenderManager(),new ModelWrath(), 0.5F));
-		//RenderingRegistry.registerEntityRenderingHandler(EntityFlailSnail.class, new RenderFailSnail(Minecraft.getMinecraft().getRenderManager(),new ModelFailSnail(), 0));
-		//RenderingRegistry.registerEntityRenderingHandler(EntityWrath.class, new RenderFactorySubterraneanCreatures());
+		
 		
 	}
 	
@@ -51,15 +49,13 @@ public final class EntityRenderRegister {
 	        
 	        RenderFactorySubterraneanCreatures renderFactorySubterraneanCreatures = new RenderFactorySubterraneanCreatures( (ModelBase)object[1],new ResourceLocation(SubterraneanCreaturesMod.MODID + ":" + "textures/entitys/"+item.getKey()+".png"));
 	        RenderingRegistry.registerEntityRenderingHandler((Class<? extends Entity>) object[0], renderFactorySubterraneanCreatures);
-	        // RenderingRegistry.registerEntityRenderingHandler((Class<? extends Entity>) object[0], new RenderSubterraneanCreatures(Minecraft.getMinecraft().getRenderManager(),(ModelBase) object[1], 0,new ResourceLocation(SubterraneanCreaturesMod.MODID + ":" + "textures/entitys/"+item.getKey()+".png")));
-	        // RenderingRegistry.registerEntityRenderingHandler((Class<? extends Entity>) object[0], new RenderSubterraneanCreatures2(Minecraft.getMinecraft().getRenderManager(),(ModelBase) object[1], 0,new ResourceLocation(SubterraneanCreaturesMod.MODID + ":" + "textures/entitys/"+item.getKey()+".png")));
 	        renderFactorySubterraneanCreatures.createRenderFor(Minecraft.getMinecraft().getRenderManager());
 
 		
 	}
 		
 	
-		//RenderingRegistry.registerEntityRenderingHandler(entityClass, new RenderSubterraneanCreatures(Minecraft.getMinecraft().getRenderManager(),model, 0,resourceLocation ));
+		
 		
 		
 		
