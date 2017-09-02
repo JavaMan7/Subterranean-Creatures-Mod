@@ -1,6 +1,7 @@
 package com.javaman.subterranean;
 
 import com.javaman.subteranean.items.ModItems;
+import com.javaman.subterranean.biomes.BiomeRegistry;
 import com.javaman.subterranean.entity.ModEntitys;
 import com.javaman.subtersnean.register.Register;
 
@@ -21,6 +22,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CommonProxy {
 
 	public void preInit(FMLPreInitializationEvent e) {
+		BiomeRegistry.initializeBiome();
 		//ModItems.createItems();
 		//ModBlocks.createBlocks();
 		ModEntitys.mainRegistry();

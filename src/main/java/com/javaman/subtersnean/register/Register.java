@@ -8,6 +8,7 @@ import java.util.Set;
 import com.javaman.subteranean.items.ModItems;
 import com.javaman.subteranean.projectiles.EntityFireShot;
 import com.javaman.subterranean.SubterraneanCreaturesMod;
+import com.javaman.subterranean.biomes.BiomeRegistry;
 import com.javaman.subterranean.entity.EntityFlailSnail;
 
 import net.minecraft.block.Block;
@@ -16,6 +17,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -60,5 +62,21 @@ public class Register {
 		
 	}
 	}
+	@SubscribeEvent
+    public void registerBiome(RegistryEvent.Register<Biome> event) {
+		
+		
+
+		  Set set = BiomeRegistry.SUBTERRANEAN_BIOMES.entrySet();
+	      Iterator iterator = set.iterator();
+		while(iterator.hasNext()) {
+	         Map.Entry  item = (Map.Entry)iterator.next();
+	         
+	       
+	         event.getRegistry().register((Biome) item.getValue());
+	        
+		
+	}
+    }
 	
 }
