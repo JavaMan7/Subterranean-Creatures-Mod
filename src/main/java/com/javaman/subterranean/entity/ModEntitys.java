@@ -41,12 +41,13 @@ public class ModEntitys {
 	}
 	
 	public static void registerEntity(Class<? extends Entity> e,String entityName,int solidColor, int spotColor,ModelBase model){
-		 Object[] object = new Object[5];
+		 Object[] object = new Object[6];
 		 object[0] = e;
 		 object[1] = model;
 		 object[2] = new ResourceLocation(SubterraneanCreaturesMod.MODID,entityName);
 		 object[3] = solidColor;
 	     object[4] = spotColor;
+	     object[5] = entityName;
 		SUBTERRANEAN_MOBS.put(entityName, object);
    
    
@@ -66,10 +67,10 @@ public class ModEntitys {
 	         Map.Entry  item = (Map.Entry)iterator.next();
 	         Object[] object = (Object[]) item.getValue();
 	       
-	        
-	         ResourceLocation resourceLocation= new ResourceLocation(SubterraneanCreaturesMod.MODID,(String)item.getKey());
+	        System.out.println(SubterraneanCreaturesMod.MODID+(String)object[5]);
+	         ResourceLocation resourceLocation= new ResourceLocation(SubterraneanCreaturesMod.MODID,(String)object[5]);
 	 		EntityRegistry.registerModEntity(resourceLocation, (Class<? extends Entity>)object[0],(String)item.getKey(),c, SubterraneanCreaturesMod.instance , 64, 1, true,(int)object[3], (int)object[4]);
-	 		
+	 		c++;
 	 		
 
 		
@@ -84,8 +85,8 @@ public class ModEntitys {
 		
 	}
 	
-	private static void createEgg( String entityName, int solidColor, int spotColor){
-		EntityList.ENTITY_EGGS.put(new ResourceLocation(SubterraneanCreaturesMod.MODID,entityName), new EntityEggInfo(new ResourceLocation(SubterraneanCreaturesMod.MODID,entityName), solidColor, spotColor));
+private static void createEgg( String entityName, int solidColor, int spotColor){
+	EntityList.ENTITY_EGGS.put(new ResourceLocation(SubterraneanCreaturesMod.MODID,entityName), new EntityEggInfo(new ResourceLocation(SubterraneanCreaturesMod.MODID,entityName), solidColor, spotColor));
 		
 	}
 

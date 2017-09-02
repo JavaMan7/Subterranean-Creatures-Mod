@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderSubterraneanCreatures extends RenderLiving{
 
-	public ResourceLocation mobTextures;
+	private final ResourceLocation mobTextures;
 	//private static final String __OBFID = "CL_00000984";
 	
 	public RenderSubterraneanCreatures(RenderManager renderManager,ModelBase par1ModelBase, float par2,ResourceLocation resourceLocation) {
