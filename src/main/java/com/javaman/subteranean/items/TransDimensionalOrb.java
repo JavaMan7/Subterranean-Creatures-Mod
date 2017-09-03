@@ -4,7 +4,8 @@ package com.javaman.subteranean.items;
 
 import com.javaman.subterranean.SubterraneanCreaturesMod;
 import com.javaman.subterranean.dimension.DimensionRegister;
-import com.javaman.subterranean.dimension.DimensionTeleporter;
+
+
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
@@ -49,7 +50,7 @@ public class TransDimensionalOrb  extends  Item{
 	
 	if (!world.isRemote) {
 		if(player instanceof EntityPlayer){
-			EntityPlayer thePlayer =  player;
+			EntityPlayerMP thePlayer = (EntityPlayerMP) player;
 			
 		
 			
@@ -67,23 +68,53 @@ public class TransDimensionalOrb  extends  Item{
 				//world.getMinecraftServer().getPlayerList().transferEntityToWorld((Entity)player, 0, player.getServer().getWorld(0), worldserver1);
 				//world.getMinecraftServer().getPlayerList().transferEntityToWorld((Entity)player, 0, player.getServer().getWorld(0), worldserver1,new DimensionTeleporter(worldserver1,player));
 			
-				thePlayer.changeDimension(DimensionRegister.dimensionId);
+				//thePlayer.changeDimension(DimensionRegister.dimensionId);
 			    
 				//new DimensionTeleporter(worldserver1,player);
 			
+				try {
+					thePlayer.timeUntilPortal = 1000;
+					
+					
+					//thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, DimensionRegister.dimensionId);
+					//thePlayer.changeDimension(DimensionRegister.dimensionId);
+					
+					//MinecraftServer minecraftserver = player.getServer();
+					//WorldServer worldserver1 = minecraftserver.getWorld(DimensionRegister.dimensionId);
+					//thePlayer.changeDimension(DimensionRegister.dimensionId);
+					//world.getMinecraftServer().getPlayerList().transferEntityToWorld((Entity)player, 0, player.getServer().getWorld(0), worldserver1);
+					//world.getMinecraftServer().getPlayerList().transferEntityToWorld((Entity)player, 0, player.getServer().getWorld(0), worldserver1,new DimensionTeleporter(worldserver1,player));
 				
+					com.javaman.subterranean.dimension.CustomTeleporter.teleportToDimension(thePlayer, DimensionRegister.dimensionId, 0, 100, 0);
+					
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				
 				
 				
 			}else{
-				
-			
-				MinecraftServer minecraftserver = player.getServer();
-				WorldServer worldserver1 = minecraftserver.getWorld(0);
-				//thePlayer.changeDimension();
-				world.getMinecraftServer().getPlayerList().transferEntityToWorld((Entity)player, 0, player.getServer().getWorld(DimensionRegister.dimensionId),worldserver1);//,new DimensionTeleporter(worldserver1,player));
+				try {
+					thePlayer.timeUntilPortal = 1000;
 					
-				//new DimensionTeleporter(worldserver1,player);
+					
+					//MinecraftServer minecraftserver = player.getServer();
+					//WorldServer worldserver1 = minecraftserver.getWorld(DimensionRegister.dimensionId);
+					//thePlayer.changeDimension(DimensionRegister.dimensionId);
+					//world.getMinecraftServer().getPlayerList().transferEntityToWorld((Entity)player, 0, player.getServer().getWorld(0), worldserver1);
+					//world.getMinecraftServer().getPlayerList().transferEntityToWorld((Entity)player, 0, player.getServer().getWorld(0), worldserver1,new DimensionTeleporter(worldserver1,player));
+				
+					
+					com.javaman.subterranean.dimension.CustomTeleporter.teleportToDimension(thePlayer, 0, 0, 100, 0);
+					
+					
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
+				
 			}
 			
 			

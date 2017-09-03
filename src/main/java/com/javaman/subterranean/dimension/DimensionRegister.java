@@ -1,9 +1,14 @@
 package com.javaman.subterranean.dimension;
 
+import com.javaman.subterranean.SubterraneanCreaturesMod;
+
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldProviderHell;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.fml.common.IWorldGenerator;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class DimensionRegister 
 {
@@ -23,9 +28,9 @@ public class DimensionRegister
 		
 		//DimensionManager.registerProviderType(dimensionId, WorldProviderSub.class,false);
 		//DimensionManager.registerDimension(dimensionId, dimensionId);
-		//DimensionManager.unregisterDimension(-1);
-		DimensionManager.registerDimension(dimensionId,DimensionType.THE_END);
-	    
+		//DimensionManager.unregisterDimension(0);
+		DimensionManager.registerDimension(dimensionId,DimensionType.register(SubterraneanCreaturesMod.MODID, "_test", dimensionId, WorldProviderSub.class, false));
+		//GameRegistry.registerWorldGenerator((IWorldGenerator) new ModWorldGen(), 1000);
 		//DimensionManager.registerDimension(-1,DimensionType.THE_END);
 		
 		
