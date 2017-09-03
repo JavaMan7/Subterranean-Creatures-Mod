@@ -13,7 +13,7 @@ public class ChunkProviderSub implements IChunkProvider{
 
 	@Override
 	public Chunk provideChunk(int x, int z) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

@@ -52,7 +52,11 @@ public class EntityFireToad extends EntityMob   {
 	        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 	        this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 	        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
+	        try {
 	        this.targetTasks.addTask(3, new AIFireballAttack(this));
+	        }catch (NullPointerException e) {
+	            System.out.print("Caught the NullPointerException");
+	        }
 	    }
 	   
 	
@@ -95,7 +99,7 @@ public class EntityFireToad extends EntityMob   {
          {
              EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
              double d0 = 64.0D;
-
+             try {
              if (entitylivingbase.getDistanceSqToEntity(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
              {
                  World world = this.parentEntity.world;
@@ -103,7 +107,7 @@ public class EntityFireToad extends EntityMob   {
 
                  if (this.attackTimer == 10)
                  {
-                     world.playEvent((EntityPlayer)null, 1015, new BlockPos(this.parentEntity), 0);
+                    // world.playEvent((EntityPlayer)null, 1015, new BlockPos(this.parentEntity), 0);
                  }
 
                  if (this.attackTimer == 20)
@@ -113,7 +117,7 @@ public class EntityFireToad extends EntityMob   {
                      double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * 4.0D);
                      double d3 = entitylivingbase.getEntityBoundingBox().minY + (double)(entitylivingbase.height / 2.0F) - (0.5D + this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F));
                      double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
-                     world.playEvent((EntityPlayer)null, 1016, new BlockPos(this.parentEntity), 0);
+                     //world.playEvent((EntityPlayer)null, 1016, new BlockPos(this.parentEntity), 0);
                      EntityLargeFireball entitylargefireball = new EntityLargeFireball(world, this.parentEntity, d2, d3, d4);
                      entitylargefireball.explosionPower = this.parentEntity.getFireballStrength();
                      entitylargefireball.posX = this.parentEntity.posX + vec3d.x * 4.0D;
@@ -127,6 +131,9 @@ public class EntityFireToad extends EntityMob   {
              {
                  --this.attackTimer;
              }
+         }catch (NullPointerException e) {
+	            System.out.print("Caught the NullPointerException");
+	        }
 
              //this.parentEntity.setAttacking(this.attackTimer > 10);
          }

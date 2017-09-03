@@ -30,6 +30,7 @@ public final class ModItems {
 	{
 		registerTtem(new FireStaff( ) );
 		registerTtem(new EssenceOfLifeDrain());
+		registerTtem(new TransDimensionalOrb());
 		
 		
 	}
