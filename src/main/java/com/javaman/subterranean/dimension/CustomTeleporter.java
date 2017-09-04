@@ -37,6 +37,12 @@ public class CustomTeleporter extends Teleporter {
 
 
     public static void teleportToDimension(EntityPlayer player, int dimension, double x, double y, double z) {
+    	
+    	x = player.posX;
+    	y = player.posY;
+    	z = player.posZ;
+    			
+    	
         int oldDimension = player.getEntityWorld().provider.getDimension();
         EntityPlayerMP entityPlayerMP = (EntityPlayerMP) player;
         MinecraftServer server = player.getEntityWorld().getMinecraftServer();
@@ -46,9 +52,11 @@ public class CustomTeleporter extends Teleporter {
         if (worldServer == null || worldServer.getMinecraftServer() == null){ //Dimension doesn't exist
             throw new IllegalArgumentException("Dimension: "+dimension+" doesn't exist!");
         }
-
+        
         worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, dimension, new CustomTeleporter(worldServer, x, y, z));
         player.setPositionAndUpdate(x, y, z);
+        
+        
         if (oldDimension == 1) {
             // For some reason teleporting out of the end does weird things.
         	

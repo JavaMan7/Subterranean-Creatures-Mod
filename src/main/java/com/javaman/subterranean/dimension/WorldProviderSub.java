@@ -16,10 +16,14 @@ public class WorldProviderSub extends WorldProvider //WorldProviderSurface
 {
 	protected int dimensionId=8;
 
-	
+	 @Override
+	    public IChunkGenerator createChunkGenerator() {
+	        return new ChunkProviderSub(world, false,  this.world.getSeed());
+	    }
+	 @Override
     public DimensionType getDimensionType()
     {
-        return DimensionType.register("sub", "_sub", 8, this.getClass(), false);
+        return DimensionRegister.dimensionType;
     }
 	
 
