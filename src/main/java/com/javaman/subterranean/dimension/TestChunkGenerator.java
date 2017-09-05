@@ -2,10 +2,8 @@ package com.javaman.subterranean.dimension;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+
 import com.javaman.subterranean.entity.EntityFlailSnail;
-
-
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

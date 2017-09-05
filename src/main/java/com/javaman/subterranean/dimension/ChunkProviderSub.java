@@ -1,9 +1,15 @@
 package com.javaman.subterranean.dimension;
 
+import static java.lang.Math.sin;
+
 import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
+
+import com.javaman.subterranean.biomes.BiomeGenFireSub;
+import com.javaman.subterranean.blocks.LapisCobblestone;
+import com.javaman.subterranean.blocks.ModBlocks;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -19,6 +25,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCavesHell;
@@ -34,7 +41,7 @@ import net.minecraft.world.gen.structure.MapGenNetherBridge;
 
 public class ChunkProviderSub implements IChunkGenerator{
 	  protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
-	    protected static final IBlockState NETHERRACK = Blocks.LAPIS_BLOCK.getDefaultState();
+	    protected static final IBlockState NETHERRACK = Blocks.STONE.getDefaultState();
 	    protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
 	    protected static final IBlockState LAVA = Blocks.WATER.getDefaultState();
 	    protected static final IBlockState GRAVEL = Blocks.GOLD_BLOCK.getDefaultState();
@@ -272,7 +279,7 @@ public class ChunkProviderSub implements IChunkGenerator{
 	     */
 	    public Chunk generateChunk(int x, int z)
 	    {
-	        this.rand.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
+	    	this.rand.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
 	        ChunkPrimer chunkprimer = new ChunkPrimer();
 	        this.prepareHeights(x, z, chunkprimer);
 	        this.buildSurfaces(x, z, chunkprimer);
@@ -294,6 +301,50 @@ public class ChunkProviderSub implements IChunkGenerator{
 
 	        chunk.resetRelightChecks();
 	        return chunk;
+	       /*this.rand.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
+	        ChunkPrimer chunkprimer = new ChunkPrimer();
+	       // this.prepareHeights(x, z, chunkprimer);
+	      //  this.buildSurfaces(x, z, chunkprimer);
+	       // this.genNetherCaves.generate(this.world, x, z, chunkprimer);
+	        
+	        int[] last= new int[2]; 
+	        for (int j = 0; j < 16; ++j)
+	        {
+	            for (int k = 0; k < 16; ++k)
+	            {
+	                for (int l = 0; l < 256; ++l)
+	                { 	//	z = (int) Math.cos(Math.sqrt(j* 2+l*2));
+	                	
+	                	
+	                	double y2 = 1* sin(j*(3.1415926/180));
+	                	//System.out.println(y2);
+	                	
+	                    chunkprimer.setBlockState(j,(int)y2,k,Blocks.GRASS.getDefaultState());
+	                	last[0]= j;
+	                	last[1]= (int) y2;
+	                	//int slope = (int) ((j-last[0])/(last[1]-y2));
+	                	 for (int h = 0; h < j-last[0]; ++h) {
+	                		 
+	                		chunkprimer.setBlockState(j,(int) (last[1]-y2),k,Blocks.GRASS.getDefaultState());
+	                	 	}
+	          	       
+	                    }
+	                }
+	            }
+	        
+	       
+
+	        Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
+	        Biome[] abiome = this.world.getBiomeProvider().getBiomes((Biome[])null, x * 16, z * 16, 16, 16);
+	        byte[] abyte = chunk.getBiomeArray();
+
+	        for (int i = 0; i < abyte.length; ++i)
+	        {
+	            abyte[i] = (byte)Biome.getIdForBiome(abiome[i]);
+	        }
+
+	        chunk.resetRelightChecks();
+	        return chunk;*/
 	    }
 
 	    private double[] getHeights(double[] p_185938_1_, int p_185938_2_, int p_185938_3_, int p_185938_4_, int p_185938_5_, int p_185938_6_, int p_185938_7_)
@@ -390,7 +441,11 @@ public class ChunkProviderSub implements IChunkGenerator{
 	     */
 	    public void populate(int x, int z)
 	    {
-	        BlockFalling.fallInstantly = true;
+	    	 if (this.rand.nextBoolean())
+		        {
+		          //  this.redMushroomFeature.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
+		        }
+	      /*  BlockFalling.fallInstantly = true;
 	        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand, x, z, false);
 	        int i = x * 16;
 	        int j = z * 16;
@@ -466,6 +521,7 @@ public class ChunkProviderSub implements IChunkGenerator{
 	        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.terraingen.DecorateBiomeEvent.Post(this.world, this.rand, blockpos));
 
 	        BlockFalling.fallInstantly = false;
+	        */
 	    }
 
 	    /**
@@ -478,21 +534,10 @@ public class ChunkProviderSub implements IChunkGenerator{
 
 	    public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
 	    {
-	        if (creatureType == EnumCreatureType.MONSTER)
-	        {
-	            if (this.genNetherBridge.isInsideStructure(pos))
-	            {
-	                return this.genNetherBridge.getSpawnList();
-	            }
+	      
+	    	Biome biome = this.world.getBiome(pos);
+	    	return biome.getSpawnableList(EnumCreatureType.WATER_CREATURE);
 
-	            if (this.genNetherBridge.isPositionInStructure(this.world, pos) && this.world.getBlockState(pos.down()).getBlock() == Blocks.NETHER_BRICK)
-	            {
-	                return this.genNetherBridge.getSpawnList();
-	            }
-	        }
-
-	        Biome biome = this.world.getBiome(pos);
-	        return biome.getSpawnableList(creatureType);
 	    }
 
 	    @Nullable
@@ -513,7 +558,7 @@ public class ChunkProviderSub implements IChunkGenerator{
 	     */
 	    public void recreateStructures(Chunk chunkIn, int x, int z)
 	    {
-	        this.genNetherBridge.generate(this.world, x, z, (ChunkPrimer)null);
+	       // this.genNetherBridge.generate(this.world, x, z, (ChunkPrimer)null);
 	    }
 	
 	

@@ -12,11 +12,11 @@ import net.minecraftforge.common.BiomeManager;
 public class BiomeRegistry {
 	public static final HashMap<Class<? extends Biome>,Biome> SUBTERRANEAN_BIOMES = new HashMap<Class<? extends Biome>,Biome>();
 	
-	public static Biome BiomeGenFireSub;
-	
+
+	public static Biome BiomeGenFireSub = new BiomeGenFireSub(new Biome.BiomeProperties("BiomeGenFireSub").setBaseHeight(0.0F).setHeightVariation(0.2F).setTemperature(0.8F));
 	public static void initializeBiome(){
 		
-		registerBiome(BiomeGenFireSub.class,new BiomeGenFireSub(new Biome.BiomeProperties("BiomeGenFireSub").setBaseHeight(0.0F).setHeightVariation(0.2F).setTemperature(0.8F)));
+		registerBiome(BiomeGenFireSub.class,BiomeGenFireSub);
 		
 	}
 	
@@ -24,7 +24,7 @@ public class BiomeRegistry {
 		SUBTERRANEAN_BIOMES.put(biomeClass, biome);
 		BiomeManager.addSpawnBiome(biome);
 		
-		
+		BiomeManager.addSpawnBiome(biome);
 	}
 
 }

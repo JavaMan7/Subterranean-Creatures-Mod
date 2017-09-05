@@ -1,5 +1,7 @@
 package com.javaman.subterranean.dimension;
 
+import com.javaman.subterranean.biomes.BiomeRegistry;
+
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.Vec3d;
 
@@ -18,13 +20,21 @@ public class WorldProviderSub extends WorldProvider //WorldProviderSurface
 
 	 @Override
 	    public IChunkGenerator createChunkGenerator() {
-	        return new ChunkProviderSub(world, false,  this.world.getSeed());
+	        //return new ChunkProviderSub(world, false,  this.world.getSeed());
+		 return new TestChunkGenerator(world);
 	    }
 	 @Override
     public DimensionType getDimensionType()
     {
         return DimensionRegister.dimensionType;
     }
+	 public void init()
+	    {
+		 	this.hasSkyLight = true;
+	        this.biomeProvider = new BiomeProviderSingle(BiomeRegistry.BiomeGenFireSub);
+	       // this.doesWaterVaporize = true;
+	       // this.nether = true;
+	    }
 	
 
 }

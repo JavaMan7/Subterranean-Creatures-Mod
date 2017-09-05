@@ -23,6 +23,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CommonProxy {
 
 	public void preInit(FMLPreInitializationEvent e) {
+		ModItems.addItem();
+		
 		DimensionRegister.mainRegistry();
 		BiomeRegistry.initializeBiome();
 		//ModItems.createItems();
@@ -30,8 +32,8 @@ public class CommonProxy {
 		ModEntitys.mainRegistry();
 		
 		//MakeProjectile.registerEntity();
-		ModItems.addItem();
 		MinecraftForge.EVENT_BUS.register(new Register());
+		
 		
 	}
 	@EventHandler

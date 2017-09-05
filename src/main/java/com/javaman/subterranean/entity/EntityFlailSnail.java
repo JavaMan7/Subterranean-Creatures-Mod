@@ -21,8 +21,10 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
-
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class EntityFlailSnail extends EntityZombie //implements IRangedAttackMob 
@@ -37,6 +39,30 @@ public class EntityFlailSnail extends EntityZombie //implements IRangedAttackMob
     {
         return false;
     }
+	 protected SoundEvent getAmbientSound()
+	    {
+	        return null;
+	    }
+
+	    protected SoundEvent getHurtSound(DamageSource p_184601_1_)
+	    {
+	        return null;
+	    }
+
+	    protected SoundEvent getDeathSound()
+	    {
+	        return null;
+	    }
+
+	    protected SoundEvent getStepSound()
+	    {
+	        return null;
+	    }
+
+	    protected void playStepSound(BlockPos pos, Block blockIn)
+	    {
+	        this.playSound(this.getStepSound(), 0.15F, 1.0F);
+	    }
 
 	
 

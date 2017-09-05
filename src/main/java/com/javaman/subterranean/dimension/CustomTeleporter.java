@@ -3,6 +3,7 @@ package com.javaman.subterranean.dimension;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter;
@@ -55,12 +56,18 @@ public class CustomTeleporter extends Teleporter {
         
         worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, dimension, new CustomTeleporter(worldServer, x, y, z));
         player.setPositionAndUpdate(x, y, z);
-        
+       
+        for (int j = 0; j < 2; ++j) {
+        for (int k = 0; k < 2; ++k) {
+       // worldServer.setBlockState(new BlockPos (player.posX+j,player.posY-1,player.posZ+k), Blocks.GRASS.getDefaultState());
+        }
+        }
         
         if (oldDimension == 1) {
             // For some reason teleporting out of the end does weird things.
         	
             player.setPositionAndUpdate(x, y, z);
+            worldServer.setBlockState(new BlockPos (player.posX,player.posY-1,player.posZ), Blocks.GRASS.getDefaultState());
             worldServer.spawnEntity(player);
             worldServer.updateEntityWithOptionalForce(player, false);
         }
