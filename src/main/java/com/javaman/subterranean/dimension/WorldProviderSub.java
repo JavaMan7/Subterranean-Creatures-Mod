@@ -35,6 +35,10 @@ public class WorldProviderSub extends WorldProvider //WorldProviderSurface
 	       // this.doesWaterVaporize = true;
 	       // this.nether = true;
 	    }
-	
+	 @Override
+	 public boolean canRespawnHere()
+	    {
+	        return true;
+	    }
 
 }
