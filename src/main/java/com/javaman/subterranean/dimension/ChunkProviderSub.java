@@ -21,7 +21,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -79,9 +81,13 @@ public class ChunkProviderSub implements IChunkGenerator{
 	    double[] br;
 	    double[] noiseData4;
 	    double[] dr;
-
+	    private Biome[] biomesForGeneration;
+		private Random random;
+	    
 	    public ChunkProviderSub(World worldIn, boolean p_i45637_2_, long seed)
 	    {
+	    	
+	        this.random = new Random((seed + 516) * 314);
 	        this.world = worldIn;
 	        this.generateStructures = p_i45637_2_;
 	        this.rand = new Random(seed);
@@ -284,12 +290,8 @@ public class ChunkProviderSub implements IChunkGenerator{
 	        this.prepareHeights(x, z, chunkprimer);
 	        this.buildSurfaces(x, z, chunkprimer);
 	        this.genNetherCaves.generate(this.world, x, z, chunkprimer);
-
-	        if (this.generateStructures)
-	        {
-	            this.genNetherBridge.generate(this.world, x, z, chunkprimer);
-	        }
-
+	        BiomeGenFireSub.generateBiomeGenFireSubTerrain(chunkprimer);
+	        this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
 	        Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
 	        Biome[] abiome = this.world.getBiomeProvider().getBiomes((Biome[])null, x * 16, z * 16, 16, 16);
 	        byte[] abyte = chunk.getBiomeArray();
@@ -298,8 +300,11 @@ public class ChunkProviderSub implements IChunkGenerator{
 	        {
 	            abyte[i] = (byte)Biome.getIdForBiome(abiome[i]);
 	        }
+	       
+	         
 
-	        chunk.resetRelightChecks();
+	        //chunk.resetRelightChecks();
+	        
 	        return chunk;
 	       /*this.rand.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
 	        ChunkPrimer chunkprimer = new ChunkPrimer();
@@ -439,89 +444,18 @@ public class ChunkProviderSub implements IChunkGenerator{
 	    /**
 	     * Generate initial structures in this chunk, e.g. mineshafts, temples, lakes, and dungeons
 	     */
-	    public void populate(int x, int z)
-	    {
-	    	 if (this.rand.nextBoolean())
-		        {
-		          //  this.redMushroomFeature.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
-		        }
-	      /*  BlockFalling.fallInstantly = true;
-	        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.world, this.rand, x, z, false);
+	    @Override
+	    public void populate(int x, int z) {
 	        int i = x * 16;
 	        int j = z * 16;
 	        BlockPos blockpos = new BlockPos(i, 0, j);
 	        Biome biome = this.world.getBiome(blockpos.add(16, 0, 16));
-	        ChunkPos chunkpos = new ChunkPos(x, z);
-	        this.genNetherBridge.generateStructure(this.world, this.rand, chunkpos);
 
-	        if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, x, z, false, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.NETHER_LAVA))
-	        for (int k = 0; k < 8; ++k)
-	        {
-	            this.hellSpringGen.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, this.rand.nextInt(16) + 8));
-	        }
+	        // Add biome decorations (like flowers, grass, trees, ...)
+	        biome.decorate(this.world, this.random, blockpos);
 
-	        if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, x, z, false, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.FIRE))
-	        for (int i1 = 0; i1 < this.rand.nextInt(this.rand.nextInt(10) + 1) + 1; ++i1)
-	        {
-	            this.fireFeature.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, this.rand.nextInt(16) + 8));
-	        }
-
-	        if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, x, z, false, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.GLOWSTONE))
-	        {
-	        for (int j1 = 0; j1 < this.rand.nextInt(this.rand.nextInt(10) + 1); ++j1)
-	        {
-	            this.lightGemGen.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(120) + 4, this.rand.nextInt(16) + 8));
-	        }
-
-	        for (int k1 = 0; k1 < 10; ++k1)
-	        {
-	            this.hellPortalGen.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
-	        }
-	        }//Forge: End doGLowstone
-
-	        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, x, z, false);
-	        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.terraingen.DecorateBiomeEvent.Pre(this.world, this.rand, blockpos));
-
-	        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(this.world, this.rand, blockpos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SHROOM))
-	        {
-	        if (this.rand.nextBoolean())
-	        {
-	            this.brownMushroomFeature.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
-	        }
-
-	        if (this.rand.nextBoolean())
-	        {
-	            this.redMushroomFeature.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16) + 8, this.rand.nextInt(128), this.rand.nextInt(16) + 8));
-	        }
-	        }
-
-
-	        if (net.minecraftforge.event.terraingen.TerrainGen.generateOre(this.world, this.rand, quartzGen, blockpos, net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.QUARTZ))
-	        for (int l1 = 0; l1 < 16; ++l1)
-	        {
-	            this.quartzGen.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16), this.rand.nextInt(108) + 10, this.rand.nextInt(16)));
-	        }
-
-	        int i2 = this.world.getSeaLevel() / 2 + 1;
-
-	        if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, x, z, false, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.NETHER_MAGMA))
-	        for (int l = 0; l < 4; ++l)
-	        {
-	            this.magmaGen.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16), i2 - 5 + this.rand.nextInt(10), this.rand.nextInt(16)));
-	        }
-
-	        if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.rand, x, z, false, net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.NETHER_LAVA2))
-	        for (int j2 = 0; j2 < 16; ++j2)
-	        {
-	            this.lavaTrapGen.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16), this.rand.nextInt(108) + 10, this.rand.nextInt(16)));
-	        }
-
-	        biome.decorate(this.world, this.rand, new BlockPos(i, 0, j));
-
-	        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.terraingen.DecorateBiomeEvent.Post(this.world, this.rand, blockpos));
-
-	        BlockFalling.fallInstantly = false;
-	        */
+	        // Make sure animals appropriate to the biome spawn here when the chunk is generated
+	        WorldEntitySpawner.performWorldGenSpawning(this.world, biome, i + 8, j + 8, 16, 16, this.random);
 	    }
 
 	    /**
@@ -536,7 +470,7 @@ public class ChunkProviderSub implements IChunkGenerator{
 	    {
 	      
 	    	Biome biome = this.world.getBiome(pos);
-	    	return biome.getSpawnableList(EnumCreatureType.WATER_CREATURE);
+	    	return biome.getSpawnableList(EnumCreatureType.MONSTER);
 
 	    }
 

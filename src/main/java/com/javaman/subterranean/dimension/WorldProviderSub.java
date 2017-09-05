@@ -20,8 +20,8 @@ public class WorldProviderSub extends WorldProvider //WorldProviderSurface
 
 	 @Override
 	    public IChunkGenerator createChunkGenerator() {
-	        //return new ChunkProviderSub(world, false,  this.world.getSeed());
-		 return new TestChunkGenerator(world);
+	       return new ChunkProviderSub(world, false,  this.world.getSeed());
+		 //return new TestChunkGenerator(world);
 	    }
 	 @Override
     public DimensionType getDimensionType()
