@@ -10,8 +10,8 @@ public class LapisCobblestone extends Block {
 
 	public LapisCobblestone() {
 		super(Material.ROCK);
-		this.setUnlocalizedName("lapiscobblestone");
-		this.setRegistryName(SubterraneanCreaturesMod.MODID+":"+"lapiscobblestone");
+		this.setUnlocalizedName("simie_cobblestone");
+		this.setRegistryName(SubterraneanCreaturesMod.MODID+":"+"simie_cobblestone");
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		
 	}

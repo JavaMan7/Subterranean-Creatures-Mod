@@ -1,5 +1,7 @@
 package com.javaman.subteranean.items;
 
+import com.javaman.subterranean.SubterraneanCreaturesMod;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -11,8 +13,8 @@ public class LifeDrainCrystal extends Item{
 
 		// TODO Auto-generated constructor stub
 	
-		this.setUnlocalizedName("LifeDrainCrystal");
-		
+		this.setUnlocalizedName("life_drain_crystal");
+		this.setRegistryName(SubterraneanCreaturesMod.MODID+":"+"life_drain_crystal");
 		 
 		 this.setMaxStackSize(64);
 		 

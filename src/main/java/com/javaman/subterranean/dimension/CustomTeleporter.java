@@ -56,18 +56,16 @@ public class CustomTeleporter extends Teleporter {
         
         worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, dimension, new CustomTeleporter(worldServer, x, y, z));
         player.setPositionAndUpdate(x, y, z);
-       
-        for (int j = 0; j < 2; ++j) {
-        for (int k = 0; k < 2; ++k) {
-       // worldServer.setBlockState(new BlockPos (player.posX+j,player.posY-1,player.posZ+k), Blocks.GRASS.getDefaultState());
-        }
-        }
+        worldServer.setBlockState(new BlockPos (player.posX,player.posY+1,player.posZ), Blocks.AIR.getDefaultState());
+        worldServer.setBlockState(new BlockPos (player.posX,player.posY,player.posZ), Blocks.AIR.getDefaultState());
+        worldServer.setBlockState(new BlockPos (player.posX,player.posY-1,player.posZ), Blocks.STONE.getDefaultState());
+        
         
         if (oldDimension == 1) {
             // For some reason teleporting out of the end does weird things.
         	
             player.setPositionAndUpdate(x, y, z);
-            worldServer.setBlockState(new BlockPos (player.posX,player.posY-1,player.posZ), Blocks.GRASS.getDefaultState());
+            worldServer.setBlockState(new BlockPos (player.posX,player.posY+1,player.posZ), Blocks.GRASS.getDefaultState());
             worldServer.spawnEntity(player);
             worldServer.updateEntityWithOptionalForce(player, false);
         }

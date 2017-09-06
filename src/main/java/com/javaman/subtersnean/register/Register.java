@@ -30,7 +30,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class Register {
 	@SubscribeEvent
-	public void registerBlock(RegistryEvent.Register<Block> event) {
+	public void registerBlocks(RegistryEvent.Register<Block> event) {
 		
 		
 		  Set set = ModBlocks.SUBTERRANEAN_BLOCKS.entrySet();
@@ -46,9 +46,10 @@ public class Register {
 
 		
 	}
+		
   }
 	@SubscribeEvent
-	public void registerItem(RegistryEvent.Register<Item> event) {
+	public void registerItems(RegistryEvent.Register<Item> event) {
 		
 		
 		  Set set = ModItems.SUBTERRANEAN_ITEMS.entrySet();
@@ -63,7 +64,7 @@ public class Register {
 
 		
 	}
-	
+		
 	      
 		
 	   
@@ -72,18 +73,10 @@ public class Register {
 	public void registerEntityEntry(RegistryEvent.Register<EntityEntry> event) {
 		
 		
-		  Set set = ModItems.SUBTERRANEAN_ITEMS.entrySet();
-	      Iterator iterator = set.iterator();
-		while(iterator.hasNext()) {
-	         Map.Entry  item = (Map.Entry)iterator.next();
-	         
-	       
-	        
-	        //int randomId = 5000000;
-	 		//EntityRegistry.registerModEntity(new ResourceLocation("minecraft", "glowstone_dust"), EntityFireShot.class, "Throwing Rock", randomId, SubterraneanCreaturesMod.MODID, 64, 10, true);
+	 		EntityRegistry.registerModEntity(new ResourceLocation("minecraft", "glowstone_dust"), EntityFireShot.class, "Throwing Rock", 423412, SubterraneanCreaturesMod.MODID, 64, 10, true);
 
 		
-	}
+	
 	}
 	@SubscribeEvent
     public void registerBiome(RegistryEvent.Register<Biome> event) {

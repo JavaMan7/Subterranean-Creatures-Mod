@@ -2,6 +2,8 @@ package com.javaman.subterranean;
 
 import java.util.Random;
 
+import com.javaman.subteranean.items.ModItems;
+
 //import com.javaman.subteranean.items.EssenceOfLifeDrain;
 //import com.javaman.subteranean.items.ModItems;
 //import com.javaman.subterranean.blocks.LapisCobblestone;
@@ -58,7 +60,57 @@ public void EntityInteractEvent(EntityInteract e) {
 	
 }
 		
+@SubscribeEvent
+public void AttackEntityEvent(AttackEntityEvent e)
+{
 	
+try {
+	
+	if(e.getEntityPlayer().inventory.getCurrentItem().getItem() != null ){
+		if(e.getEntityPlayer().inventory.getCurrentItem().getItem() == ModItems.WRAITH_SWORD )
+		{
+		
+			
+			
+				
+			 EntityPlayerMP thePlayer =  (EntityPlayerMP) e.getEntityPlayer();
+			e.getTarget().attackEntityFrom(DamageSource.WITHER, 7.0F);
+			
+			
+			
+				e.getEntityPlayer().setHealth( e.getEntityPlayer().getHealth() + 0.5f );
+				//System.out.println("bey"
+				//		+ "");
+				
+				
+				
+			
+			
+			
+			
+		}
+		
+		
+			//if(e.entityPlayer.inventory.getCurrentItem().getItem() == AddItem.WraithSword && e.target )
+			//{
+			
+				
+				
+					
+				 //EntityPlayerMP thePlayer =  e.;
+					//e.entityPlayer.
+					
+			//}
+		
+		
+		}
+
+} catch (Exception e2) {
+	// TODO: handle exception
+}
+	
+}
+		
 
 		
 		

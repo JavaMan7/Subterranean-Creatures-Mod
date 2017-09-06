@@ -43,7 +43,7 @@ import net.minecraft.world.gen.structure.MapGenNetherBridge;
 
 public class ChunkProviderSub implements IChunkGenerator{
 	  protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
-	    protected static final IBlockState NETHERRACK = Blocks.STONE.getDefaultState();
+	    protected static final IBlockState NETHERRACK = ModBlocks.lapisCobblestone.getDefaultState();
 	    protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
 	    protected static final IBlockState LAVA = Blocks.WATER.getDefaultState();
 	    protected static final IBlockState GRAVEL = Blocks.GOLD_BLOCK.getDefaultState();

@@ -2,9 +2,12 @@ package com.javaman.subterranean;
 
 import com.javaman.subteranean.items.ModItems;
 import com.javaman.subterranean.biomes.BiomeRegistry;
+import com.javaman.subterranean.blocks.ModBlocks;
 import com.javaman.subterranean.dimension.DimensionRegister;
 import com.javaman.subterranean.entity.ModEntitys;
 import com.javaman.subtersnean.register.Register;
+
+import net.minecraftforge.client.model.obj.OBJLoader;
 
 //import com.javaman.subteranean.items.ModItems;
 //import com.javaman.subteranean.projectiles.MakeProjectile;
@@ -21,8 +24,11 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class CommonProxy {
-
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
+		
+		ModBlocks.addItem();
+
 		ModItems.addItem();
 		
 		DimensionRegister.mainRegistry();
@@ -45,7 +51,7 @@ public class CommonProxy {
 		
 		MinecraftForge.EVENT_BUS.register(new SubEventHandler());
 	}
-
+	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
 
 	}
