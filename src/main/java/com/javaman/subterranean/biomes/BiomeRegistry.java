@@ -8,6 +8,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.BiomeManager.BiomeEntry;
+import net.minecraftforge.common.BiomeManager.BiomeType;
 
 public class BiomeRegistry {
 	public static final HashMap<Class<? extends Biome>,Biome> SUBTERRANEAN_BIOMES = new HashMap<Class<? extends Biome>,Biome>();

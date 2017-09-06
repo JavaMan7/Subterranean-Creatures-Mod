@@ -31,7 +31,7 @@ public class FireStaff  extends  Item{
 		// TODO Auto-generated constructor stub
 		this.setUnlocalizedName("fire_staff");
 		this.setRegistryName(SubterraneanCreaturesMod.MODID+":"+"fire_staff");
-
+		//this.setr
 		 this.setMaxDamage(384);
 		 
 		 this.setMaxStackSize(64);

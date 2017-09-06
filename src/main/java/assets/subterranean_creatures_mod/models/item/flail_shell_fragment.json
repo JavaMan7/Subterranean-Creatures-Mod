@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "subterranean_creatures_mod:items/FlailSnailArmor"
+		"layer0": "subterranean_creatures_mod:items/flail_shell_fragment"
 	},
 	"display": {
 		"thirdperson": {

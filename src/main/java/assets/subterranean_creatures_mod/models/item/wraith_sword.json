@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "subterranean_creatures_mod:items/FlailSnailShellLeggings"
+		"layer0": "subterranean_creatures_mod:items/wraith_sword"
 	},
 	"display": {
 		"thirdperson": {

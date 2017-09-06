@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "subterranean_creatures_mod:items/FlailSnailShellChestplate"
+		"layer0": "subterranean_creatures_mod:items/fire_toad_gland"
 	},
 	"display": {
 		"thirdperson": {

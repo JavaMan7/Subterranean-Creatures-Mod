@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "subterranean_creatures_mod:items/TransDimensionalOrb"
+		"layer0": "subterranean_creatures_mod:items/trans_dimensional_orb"
 	},
 	"display": {
 		"thirdperson": {

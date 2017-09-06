@@ -37,7 +37,8 @@ public final class ItemRenderRegister {
 		         Map.Entry  item = (Map.Entry)iterator.next();
 		         
 		       //  if(item instanceof Item) {
-		         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register((Item) item.getValue(), 0, new ModelResourceLocation(modid + ":" + ((Item) item.getValue()).getUnlocalizedName().substring(5), "inventory"));
+		         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register((Item) item.getValue(), 0, new ModelResourceLocation(((Item) item.getValue()).getRegistryName(), "inventory"));
+		         
 		        // }
 			
 		}

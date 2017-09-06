@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "subterranean_creatures_mod:items/EssenceOfLifeDrain"
+		"layer0": "subterranean_creatures_mod:items/essence_of_life_drain"
 	},
 	"display": {
 		"thirdperson": {

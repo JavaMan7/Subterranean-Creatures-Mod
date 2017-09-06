@@ -20,12 +20,33 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.BiomeManager.BiomeEntry;
+import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class Register {
+	@SubscribeEvent
+	public void registerBlock(RegistryEvent.Register<Block> event) {
+		
+		
+		  Set set = ModBlocks.SUBTERRANEAN_BLOCKS.entrySet();
+	      Iterator iterator = set.iterator();
+		while(iterator.hasNext()) {
+	         Map.Entry  item = (Map.Entry)iterator.next();
+	         Block block = (Block) item.getValue();
+	         
+	         event.getRegistry().register(block);
+	         ModItems.registerTtem(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+	      //   int randomId = 5000000;
+	 		//EntityRegistry.registerModEntity(new ResourceLocation("minecraft", "glowstone_dust"), EntityFireShot.class, "Throwing Rock", randomId, SubterraneanCreaturesMod.MODID, 64, 10, true);
+
+		
+	}
+  }
 	@SubscribeEvent
 	public void registerItem(RegistryEvent.Register<Item> event) {
 		
@@ -58,7 +79,7 @@ public class Register {
 	         
 	       
 	        
-	         int randomId = 5000000;
+	        //int randomId = 5000000;
 	 		//EntityRegistry.registerModEntity(new ResourceLocation("minecraft", "glowstone_dust"), EntityFireShot.class, "Throwing Rock", randomId, SubterraneanCreaturesMod.MODID, 64, 10, true);
 
 		
@@ -76,27 +97,10 @@ public class Register {
 	         
 	       
 	         event.getRegistry().register((Biome) item.getValue());
-	        
+	         BiomeManager.addBiome(BiomeType.WARM,new BiomeEntry((Biome) item.getValue(),5));
 		
 	}
     }
-	@SubscribeEvent
-	public void registerBlock(RegistryEvent.Register<Block> event) {
-		
-		
-		  Set set = ModBlocks.SUBTERRANEAN_BLOCKS.entrySet();
-	      Iterator iterator = set.iterator();
-		while(iterator.hasNext()) {
-	         Map.Entry  item = (Map.Entry)iterator.next();
-	         Block block = (Block) item.getValue();
-	         
-	         event.getRegistry().register(block);
-	         ModItems.registerTtem(new ItemBlock(block).setRegistryName(block.getRegistryName()));
-	      //   int randomId = 5000000;
-	 		//EntityRegistry.registerModEntity(new ResourceLocation("minecraft", "glowstone_dust"), EntityFireShot.class, "Throwing Rock", randomId, SubterraneanCreaturesMod.MODID, 64, 10, true);
-
-		
-	}
-  }
+	
 	
 }

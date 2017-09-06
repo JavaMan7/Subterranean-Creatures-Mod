@@ -1,7 +1,7 @@
 {
 	"parent": "builtin/generated",
 	"textures": {
-		"layer0": "subterranean_creatures_mod:items/LifeDrainCrystal"
+		"layer0": "subterranean_creatures_mod:items/flail_snail_shell_boots"
 	},
 	"display": {
 		"thirdperson": {

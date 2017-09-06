@@ -1,5 +1,6 @@
 package com.javaman.subteranean.items;
-
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import java.util.HashMap;
 
 import com.javaman.subterranean.SubterraneanCreaturesMod;
@@ -26,13 +27,42 @@ public final class ModItems {
 		
 	}
 	
+	
 	public static void addItem()
-	{
-		registerTtem(new FireStaff( ) );
-		registerTtem(new EssenceOfLifeDrain());
-		registerTtem(new TransDimensionalOrb());
+	{	
+		
+		
+		
+		
+		
+		
+		registerTtem(FIRE_STAFF);
+		registerTtem(ESSENCE_OF_LIFE_DRAIN);
+		
+		registerTtem(TRANS_DIMENSIONAL_ORB);
+		registerTtem(FLAIL_SHELL_FRAGMENT);
+		registerTtem(FLAIL_SNAIL_SHELL_HELEMET);
+		registerTtem(FLAIL_SNAIL_SHELL_CHESTPLATE);
+		registerTtem(FLAIL_SNAIL_SHELL_LEGGINGS);
+		registerTtem(FLAIL_SNAIL_SHELL_BOOTS);
 		
 		
 	}
+		
+		public static FireStaff FIRE_STAFF = new FireStaff();
+		public static EssenceOfLifeDrain ESSENCE_OF_LIFE_DRAIN = new EssenceOfLifeDrain();
+		public static TransDimensionalOrb TRANS_DIMENSIONAL_ORB = new TransDimensionalOrb();
+		public static FlailShellFragment FLAIL_SHELL_FRAGMENT = new FlailShellFragment();
+		
+		public static ItemArmor FLAIL_SNAIL_SHELL_HELEMET= new FlailSnailArmor("flail_snail_shell_helmet", 1,EntityEquipmentSlot.HEAD);
+		public static ItemArmor FLAIL_SNAIL_SHELL_CHESTPLATE = new FlailSnailArmor("flail_snail_shell_chestplate",1, EntityEquipmentSlot.CHEST);
+		public static ItemArmor FLAIL_SNAIL_SHELL_LEGGINGS = new FlailSnailArmor("flail_snail_shell_leggings",2, EntityEquipmentSlot.LEGS);
+		public static ItemArmor FLAIL_SNAIL_SHELL_BOOTS = new FlailSnailArmor("flail_snail_shell_boots",1, EntityEquipmentSlot.FEET);
+		
+		
+		
+		
+		
+	
 
 }

@@ -38,7 +38,7 @@ public class WorldProviderSub extends WorldProvider //WorldProviderSurface
 	 @Override
 	 public boolean canRespawnHere()
 	    {
-	        return true;
+	        return false;
 	    }
 
 }
