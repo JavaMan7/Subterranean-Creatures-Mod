@@ -2,7 +2,11 @@ package com.javaman.subterranean;
 
 import java.util.Random;
 
+import com.javaman.subteranean.items.EssenceOfLifeDrain;
 import com.javaman.subteranean.items.ModItems;
+import com.javaman.subterranean.entity.EntityFireToad;
+import com.javaman.subterranean.entity.EntityFlailSnail;
+import com.javaman.subterranean.entity.EntityWrath;
 
 //import com.javaman.subteranean.items.EssenceOfLifeDrain;
 //import com.javaman.subteranean.items.ModItems;
@@ -42,13 +46,39 @@ BlockOre b2;
 TileEntityChest  t = new TileEntityChest();
 
 @SubscribeEvent
+
 public void onEntityDrop(LivingDropsEvent event)
 {
 random = new Random();
 
+EssenceOfLifeDrain eold = new EssenceOfLifeDrain();
+ //DO NOT CHANGE THIS
+int dropped = random.nextInt(1) + 1;
 
-		
-	}
+
+
+if(event.getEntityLiving() instanceof EntityFireToad)
+{
+	if(rand()<= 50)
+event.getEntityLiving().entityDropItem(new ItemStack(Items.NETHER_WART), dropped);
+	if(rand()<= 10)
+event.getEntityLiving().entityDropItem(new ItemStack(ModItems.FIRE_TOAD_GLAND), dropped);
+}
+if(event.getEntityLiving() instanceof EntityWrath)
+{
+	if(rand()<= 10)
+event.getEntityLiving().entityDropItem(new ItemStack(ModItems.ESSENCE_OF_LIFE_DRAIN), dropped);
+}
+if(event.getEntityLiving() instanceof EntityFlailSnail)
+{
+	if(rand()<= 10)
+	event.getEntityLiving().entityDropItem(new ItemStack(ModItems.FLAIL_SHELL_FRAGMENT), dropped);
+
+}
+
+
+
+}
 @SubscribeEvent
 public void EntityInteractEvent(EntityInteract e) {
 	//((EntityLivingBase) e.getEntity()).setHealth( ((EntityLivingBase) e.getEntity()).getHealth() - 10.0f );

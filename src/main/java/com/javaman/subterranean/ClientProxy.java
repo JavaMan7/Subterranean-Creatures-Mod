@@ -23,7 +23,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent e) {
 		super.preInit(e);
-		OBJLoader.INSTANCE.addDomain(SubterraneanCreaturesMod.MODID);
+		//OBJLoader.INSTANCE.addDomain(SubterraneanCreaturesMod.MODID);
 		EntityRenderRegister.registerEntityRenderer();
 	}
 

@@ -43,7 +43,7 @@ import net.minecraft.world.gen.structure.MapGenNetherBridge;
 
 public class ChunkProviderSub implements IChunkGenerator{
 	  protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
-	    protected static final IBlockState NETHERRACK = ModBlocks.lapisCobblestone.getDefaultState();
+	    protected static final IBlockState NETHERRACK = Blocks.STONE.getDefaultState();
 	    protected static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
 	    protected static final IBlockState LAVA = Blocks.WATER.getDefaultState();
 	    protected static final IBlockState GRAVEL = Blocks.GOLD_BLOCK.getDefaultState();
@@ -453,6 +453,7 @@ public class ChunkProviderSub implements IChunkGenerator{
 
 	        // Add biome decorations (like flowers, grass, trees, ...)
 	        biome.decorate(this.world, this.random, blockpos);
+	        
 
 	        // Make sure animals appropriate to the biome spawn here when the chunk is generated
 	        WorldEntitySpawner.performWorldGenSpawning(this.world, biome, i + 8, j + 8, 16, 16, this.random);
@@ -470,7 +471,7 @@ public class ChunkProviderSub implements IChunkGenerator{
 	    {
 	      
 	    	Biome biome = this.world.getBiome(pos);
-	    	return biome.getSpawnableList(EnumCreatureType.MONSTER);
+	    	return biome.getSpawnableList(EnumCreatureType.WATER_CREATURE);//
 
 	    }
 
@@ -495,7 +496,42 @@ public class ChunkProviderSub implements IChunkGenerator{
 	       // this.genNetherBridge.generate(this.world, x, z, (ChunkPrimer)null);
 	    }
 	
-	
+	    public static BlockPos finedOpen(World worldIn,BlockPos chunkPos,int x,int y)
+		{
+
+
+			
+
+			BlockPos pos;
+					for (int l = 254; l >= 0; --l)
+					{
+						
+						if(worldIn.getBlockState(chunkPos.add(x,l,y)).getMaterial() == Material.AIR&&
+								worldIn.getBlockState(chunkPos.add(x,l-1,y)).getMaterial() != Material.AIR&&
+										worldIn.getBlockState(chunkPos.add(x,l-1,y)).getMaterial() != Material.WATER&& 
+												worldIn.getBlockState(chunkPos.add(x,l-1,y)) != Blocks.BEDROCK.getDefaultState()
+								) {
+							//System.out.println(chunkPos.add(x,l,y));
+
+							 	return new BlockPos(x,l,y);
+							 
+
+							
+
+
+
+
+
+			             }
+			
+			
+					}
+
+
+					return new BlockPos(x,0,y);
+
+		}
+	   
 }
 
    

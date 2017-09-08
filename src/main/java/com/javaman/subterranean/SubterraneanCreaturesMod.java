@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class SubterraneanCreaturesMod
 {
     public static final String MODID = "subterranean_creatures_mod";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "1.5";
     @Instance
     public static SubterraneanCreaturesMod instance = new SubterraneanCreaturesMod();//this instance is used by forge to communicate with are class
     @SidedProxy(clientSide="com.javaman.subterranean.ClientProxy",

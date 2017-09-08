@@ -56,9 +56,10 @@ public class CustomTeleporter extends Teleporter {
         
         worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, dimension, new CustomTeleporter(worldServer, x, y, z));
         player.setPositionAndUpdate(x, y, z);
-        worldServer.setBlockState(new BlockPos (player.posX,player.posY+1,player.posZ), Blocks.AIR.getDefaultState());
-        worldServer.setBlockState(new BlockPos (player.posX,player.posY,player.posZ), Blocks.AIR.getDefaultState());
-        worldServer.setBlockState(new BlockPos (player.posX,player.posY-1,player.posZ), Blocks.STONE.getDefaultState());
+        
+        worldServer.setBlockState(new BlockPos (player.posX,player.posY+1,player.posZ),Blocks.AIR.getDefaultState());
+        worldServer.setBlockState(new BlockPos (player.posX,player.posY,player.posZ),Blocks.AIR.getDefaultState());
+        worldServer.setBlockState(new BlockPos (player.posX,player.posY-1,player.posZ),Blocks.STONE.getDefaultState());
         
         
         if (oldDimension == 1) {

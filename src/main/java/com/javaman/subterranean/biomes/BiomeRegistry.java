@@ -26,7 +26,7 @@ public class BiomeRegistry {
 		SUBTERRANEAN_BIOMES.put(biomeClass, biome);
 		BiomeManager.addSpawnBiome(biome);
 		
-		BiomeManager.addSpawnBiome(biome);
+		
 	}
 
 }
