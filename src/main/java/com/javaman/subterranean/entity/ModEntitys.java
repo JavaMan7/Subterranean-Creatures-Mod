@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.javaman.subterranean.SubterraneanCreaturesMod;
+import com.javaman.subterranean.biomes.BiomeRegistry;
 import com.javaman.subterranean.client.renderer.entity.EntityRenderRegister;
 import com.javaman.subterranean.client.renderer.entity.RenderSubterraneanCreatures;
 import com.javaman.subterranean.models.ModelFailSnail;
@@ -18,12 +19,18 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.EntityList.EntityEggInfo;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
+import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -32,14 +39,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModEntitys {
 	public static final HashMap<String,Object[]> SUBTERRANEAN_MOBS = new HashMap<String,Object[]>();
 	static int c = 412879;
+	
+	
 	public static void mainRegistry(){
+		
+		
+		
 		registerEntity(EntityFlailSnail.class, "flail_snail", 0x4b0675, 0xf4a511,new ModelFailSnail());
 		registerEntity(EntityWrath.class, "wrath", 0x999999, 0xFF0000,new ModelWrath());
 		registerEntity(EntityFireToad.class, "fire_toad", 0x999999, 0xFF0000,new ModelFireToad());
 		
-		
 		createEntity(SUBTERRANEAN_MOBS);
-		
+		EntityRegistry.addSpawn(EntityWrath.class, 50, 1, 2, EnumCreatureType.MONSTER, Biome.getBiomeForId(4));
+		EntityRegistry.addSpawn(EntityFlailSnail.class, 50, 1, 1, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
+		EntityRegistry.addSpawn(EntityFireToad.class, 50, 1, 1, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
 	}
 	
 	public static void registerEntity(Class<? extends Entity> e,String entityName,int solidColor, int spotColor,ModelBase model){
@@ -52,7 +65,7 @@ public class ModEntitys {
 	     object[5] = entityName;
 		SUBTERRANEAN_MOBS.put(entityName, object);
    
-   
+		
     
 		
 		

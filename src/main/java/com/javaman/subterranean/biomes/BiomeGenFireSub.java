@@ -42,9 +42,9 @@ public class BiomeGenFireSub extends Biome{
 		this.spawnableCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
-		this.spawnableMonsterList.clear();
-		this.spawnableMonsterList.add(new SpawnListEntry(EntityFireToad.class, 1, 1, 1));
-		this.spawnableMonsterList.add(new SpawnListEntry(EntityFlailSnail.class, 1, 1, 1));
+		//this.spawnableMonsterList.clear();
+		//this.spawnableMonsterList.add(new SpawnListEntry(EntityFireToad.class, 1, 1, 1));
+		//this.spawnableMonsterList.add(new SpawnListEntry(EntityFlailSnail.class, 1, 1, 1));
 		
 
 		//BiomeManager.addWeightedGrassGenForBiome(this, worldGeneratorBigTree, 100);

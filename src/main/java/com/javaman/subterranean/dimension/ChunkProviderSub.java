@@ -23,6 +23,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.biome.Biome;
+
 import net.minecraft.world.biome.Biome.BiomeProperties;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -469,10 +470,9 @@ public class ChunkProviderSub implements IChunkGenerator{
 
 	    public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
 	    {
-	      
-	    	Biome biome = this.world.getBiome(pos);
-	    	return biome.getSpawnableList(EnumCreatureType.WATER_CREATURE);//
-
+	    	 
+	         Biome biome = this.world.getBiome(pos);
+	         return biome.getSpawnableList(creatureType);
 	    }
 
 	    @Nullable

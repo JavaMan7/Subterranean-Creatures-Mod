@@ -16,6 +16,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -93,6 +94,8 @@ public class Register {
 	         BiomeManager.addBiome(BiomeType.WARM,new BiomeEntry((Biome) item.getValue(),5));
 		
 	}
+		//EntityRegistry.addSpawn(EntityFlailSnail.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
+		
     }
 	
 	
