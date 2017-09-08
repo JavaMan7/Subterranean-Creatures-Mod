@@ -33,6 +33,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.feature.WorldGenBigMushroom;
 import net.minecraft.world.gen.feature.WorldGenBush;
 import net.minecraft.world.gen.feature.WorldGenFire;
 import net.minecraft.world.gen.feature.WorldGenGlowStone1;
@@ -77,6 +78,8 @@ public class ChunkProviderSub implements IChunkGenerator{
 	    private final WorldGenBush redMushroomFeature = new WorldGenBush(Blocks.RED_MUSHROOM);
 	    private MapGenNetherBridge genNetherBridge = new MapGenNetherBridge();
 	    private MapGenBase genNetherCaves = new MapGenCavesHell();
+	    /** Field that holds big mushroom generator */
+	    public WorldGenerator bigMushroomGen = new WorldGenBigMushroom();
 	    double[] pnr;
 	    double[] ar;
 	    double[] br;
@@ -445,19 +448,27 @@ public class ChunkProviderSub implements IChunkGenerator{
 	    /**
 	     * Generate initial structures in this chunk, e.g. mineshafts, temples, lakes, and dungeons
 	     */
-	    @Override
+	    
 	    public void populate(int x, int z) {
 	        int i = x * 16;
 	        int j = z * 16;
 	        BlockPos blockpos = new BlockPos(i, 0, j);
 	        Biome biome = this.world.getBiome(blockpos.add(16, 0, 16));
 
-	        // Add biome decorations (like flowers, grass, trees, ...)
-	        biome.decorate(this.world, this.random, blockpos);
+	       
+	      //  if (this.rand.nextBoolean())
+	       // {
+	       ///     this.bigMushroomGen.generate(this.world, this.rand,finedOpen(this.world, blockpos, i, j));
+	       // }
 	        
-
-	        // Make sure animals appropriate to the biome spawn here when the chunk is generated
-	        WorldEntitySpawner.performWorldGenSpawning(this.world, biome, i + 8, j + 8, 16, 16, this.random);
+	      for (int k2 = 0; k2 < 3; ++k2)
+	        {
+	            int l6 = random.nextInt(16) + 8;
+	            int k10 = random.nextInt(16) + 8;
+	            if(isOpen(this.world, blockpos, i+k10, j+l6))
+	            this.bigMushroomGen.generate(this.world, this.rand,finedOpen(this.world, blockpos, i+k10, j+l6));
+	        }
+	        
 	    }
 
 	    /**
@@ -529,6 +540,41 @@ public class ChunkProviderSub implements IChunkGenerator{
 
 
 					return new BlockPos(x,0,y);
+
+		}
+	    public static boolean isOpen(World worldIn,BlockPos chunkPos,int x,int y)
+		{
+
+
+			
+
+			BlockPos pos;
+					for (int l = 100; l >= 0; --l)
+					{
+						
+						if(worldIn.getBlockState(chunkPos.add(x,l,y)).getMaterial() == Material.AIR&&
+								worldIn.getBlockState(chunkPos.add(x,l-1,y)).getMaterial() != Material.AIR&&
+										worldIn.getBlockState(chunkPos.add(x,l-1,y)).getMaterial() != Material.WATER&& 
+												worldIn.getBlockState(chunkPos.add(x,l-1,y)) != Blocks.BEDROCK.getDefaultState()
+								) {
+							//System.out.println(chunkPos.add(x,l,y));
+
+							 	return true;
+							 
+
+							
+
+
+
+
+
+			             }
+			
+			
+					}
+
+
+					return false;
 
 		}
 	   
