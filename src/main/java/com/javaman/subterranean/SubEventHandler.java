@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.javaman.subteranean.items.EssenceOfLifeDrain;
 import com.javaman.subteranean.items.ModItems;
+import com.javaman.subterranean.WorldGen.SubWorldGen;
 import com.javaman.subterranean.entity.EntityFireToad;
 import com.javaman.subterranean.entity.EntityFlailSnail;
 import com.javaman.subterranean.entity.EntityWrath;
@@ -34,6 +35,8 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
+import net.minecraftforge.event.terraingen.InitMapGenEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class SubEventHandler
@@ -59,19 +62,19 @@ int dropped = random.nextInt(1) + 1;
 
 if(event.getEntityLiving() instanceof EntityFireToad)
 {
-	if(rand()<= 50)
+	if(rand()<= 60)
 event.getEntityLiving().entityDropItem(new ItemStack(Items.NETHER_WART), dropped);
-	if(rand()<= 10)
+	if(rand()<= 20)
 event.getEntityLiving().entityDropItem(new ItemStack(ModItems.FIRE_TOAD_GLAND), dropped);
 }
 if(event.getEntityLiving() instanceof EntityWrath)
 {
-	if(rand()<= 10)
+	if(rand()<= 60)
 event.getEntityLiving().entityDropItem(new ItemStack(ModItems.ESSENCE_OF_LIFE_DRAIN), dropped);
 }
 if(event.getEntityLiving() instanceof EntityFlailSnail)
 {
-	if(rand()<= 10)
+	if(rand()<= 50)
 	event.getEntityLiving().entityDropItem(new ItemStack(ModItems.FLAIL_SHELL_FRAGMENT), dropped);
 
 }
@@ -89,58 +92,48 @@ public void EntityInteractEvent(EntityInteract e) {
 	
 	
 }
-		
+
 @SubscribeEvent
 public void AttackEntityEvent(AttackEntityEvent e)
 {
-	
-try {
-	
-	if(e.getEntityPlayer().inventory.getCurrentItem().getItem() != null ){
-		if(e.getEntityPlayer().inventory.getCurrentItem().getItem() == ModItems.WRAITH_SWORD )
-		{
-		
-			
-			
-				
-			 EntityPlayerMP thePlayer =  (EntityPlayerMP) e.getEntityPlayer();
-			e.getTarget().attackEntityFrom(DamageSource.WITHER, 7.0F);
-			
-			
-			
+
+	try {
+
+		if(e.getEntityPlayer().inventory.getCurrentItem().getItem() != null ){
+			if(e.getEntityPlayer().inventory.getCurrentItem().getItem() == ModItems.WRAITH_SWORD )
+			{
+
+
+
+
+				EntityPlayerMP thePlayer =  (EntityPlayerMP) e.getEntityPlayer();
+				e.getTarget().attackEntityFrom(DamageSource.WITHER, 7.0F);
+
 				e.getEntityPlayer().setHealth( e.getEntityPlayer().getHealth() + 0.5f );
 				//System.out.println("bey"
 				//		+ "");
-				
-				
-				
-			
-			
-			
-			
-		}
-		
-		
-			//if(e.entityPlayer.inventory.getCurrentItem().getItem() == AddItem.WraithSword && e.target )
-			//{
-			
-				
-				
-					
-				 //EntityPlayerMP thePlayer =  e.;
-					//e.entityPlayer.
-					
-			//}
-		
-		
+			}
+
 		}
 
-} catch (Exception e2) {
-	// TODO: handle exception
-}
+	} catch (Exception e2) {
+		// TODO: handle exception
+	}
 	
 }
+/*@SubscribeEvent
+public void LivingAttackEvent(AttackEntityEvent e) {
+	
+	if (!(e.getTarget() instanceof EntityPlayer) && e.getEntityLiving() instanceof EntityFireToad) {
+	
 		
+		e.setCanceled(true);
+		
+	}
+	
+	
+	
+}*/
 
 		
 		

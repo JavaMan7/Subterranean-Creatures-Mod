@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.javaman.subterranean.WorldGen.SubWorldGen;
 import com.javaman.subterranean.biomes.BiomeGenFireSub;
 import com.javaman.subterranean.blocks.LapisCobblestone;
 import com.javaman.subterranean.blocks.ModBlocks;
@@ -87,7 +88,8 @@ public class ChunkProviderSub implements IChunkGenerator{
 	    double[] dr;
 	    private Biome[] biomesForGeneration;
 		private Random random;
-	    
+		private int openY=0;
+		SubWorldGen sub=new SubWorldGen();
 	    public ChunkProviderSub(World worldIn, boolean p_i45637_2_, long seed)
 	    {
 	    	
@@ -460,14 +462,21 @@ public class ChunkProviderSub implements IChunkGenerator{
 	       // {
 	       ///     this.bigMushroomGen.generate(this.world, this.rand,finedOpen(this.world, blockpos, i, j));
 	       // }
-	        
-	      for (int k2 = 0; k2 < 3; ++k2)
+	      if(net.minecraftforge.event.terraingen.TerrainGen.decorate(world, random, blockpos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.BIG_SHROOM)) {
+	      for (int k2 = 0; k2 < 5; ++k2)
 	        {
 	            int l6 = random.nextInt(16) + 8;
 	            int k10 = random.nextInt(16) + 8;
 	            if(isOpen(this.world, blockpos, i+k10, j+l6))
-	            this.bigMushroomGen.generate(this.world, this.rand,finedOpen(this.world, blockpos, i+k10, j+l6));
+	            this.bigMushroomGen.generate(this.world, this.rand,new BlockPos(i+k10,openY, j+l6));
 	        }
+	      }
+	    /*  int l6 = random.nextInt(16) + 8;
+          int k10 = random.nextInt(16) + 8;
+	      if(isOpen(this.world, blockpos, i+k10, j+l6))
+	      sub.generate(world, rand, new BlockPos(i+k10,openY, j+l6));
+	      // Make sure animals appropriate to the biome spawn here when the chunk is generated*/
+	        WorldEntitySpawner.performWorldGenSpawning(this.world, biome, i + 8, j + 8, 16, 16, this.random);
 	        
 	    }
 
@@ -507,20 +516,20 @@ public class ChunkProviderSub implements IChunkGenerator{
 	       // this.genNetherBridge.generate(this.world, x, z, (ChunkPrimer)null);
 	    }
 	
-	    public static BlockPos finedOpen(World worldIn,BlockPos chunkPos,int x,int y)
+	    public  BlockPos finedOpen(World worldIn,BlockPos chunkPos,int x,int y)
 		{
 
 
 			
 
 			BlockPos pos;
-					for (int l = 254; l >= 0; --l)
+					for (int l = 100; l >= 0; --l)
 					{
 						
 						if(worldIn.getBlockState(chunkPos.add(x,l,y)).getMaterial() == Material.AIR&&
-								worldIn.getBlockState(chunkPos.add(x,l-1,y)).getMaterial() != Material.AIR&&
-										worldIn.getBlockState(chunkPos.add(x,l-1,y)).getMaterial() != Material.WATER&& 
-												worldIn.getBlockState(chunkPos.add(x,l-1,y)) != Blocks.BEDROCK.getDefaultState()
+								worldIn.getBlockState(chunkPos.add(x,l-1,y)).getMaterial() != Material.AIR
+										
+												
 								) {
 							//System.out.println(chunkPos.add(x,l,y));
 
@@ -542,23 +551,22 @@ public class ChunkProviderSub implements IChunkGenerator{
 					return new BlockPos(x,0,y);
 
 		}
-	    public static boolean isOpen(World worldIn,BlockPos chunkPos,int x,int y)
+	    public  boolean isOpen(World worldIn,BlockPos chunkPos,int x,int y)
 		{
 
 
 			
 
 			BlockPos pos;
-					for (int l = 100; l >= 0; --l)
+					for (int l = 90; l >= 32; --l)
 					{
 						
 						if(worldIn.getBlockState(chunkPos.add(x,l,y)).getMaterial() == Material.AIR&&
-								worldIn.getBlockState(chunkPos.add(x,l-1,y)).getMaterial() != Material.AIR&&
-										worldIn.getBlockState(chunkPos.add(x,l-1,y)).getMaterial() != Material.WATER&& 
-												worldIn.getBlockState(chunkPos.add(x,l-1,y)) != Blocks.BEDROCK.getDefaultState()
+								worldIn.getBlockState(chunkPos.add(x,l-1,y)).getMaterial() != Material.AIR
+										
 								) {
 							//System.out.println(chunkPos.add(x,l,y));
-
+							   openY = l;
 							 	return true;
 							 
 

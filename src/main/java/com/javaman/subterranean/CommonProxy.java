@@ -1,6 +1,7 @@
 package com.javaman.subterranean;
 
 import com.javaman.subteranean.items.ModItems;
+import com.javaman.subterranean.WorldGen.SubWorldGen;
 import com.javaman.subterranean.biomes.BiomeRegistry;
 import com.javaman.subterranean.blocks.ModBlocks;
 import com.javaman.subterranean.dimension.DimensionRegister;
@@ -22,6 +23,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
 	@EventHandler
@@ -30,7 +32,7 @@ public class CommonProxy {
 		ModBlocks.addItem();
 
 		ModItems.addItem();
-		
+		//GameRegistry.registerWorldGenerator(new SubWorldGen(), 1);
 		DimensionRegister.mainRegistry();
 		BiomeRegistry.initializeBiome();
 		//ModItems.createItems();

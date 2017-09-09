@@ -47,10 +47,10 @@ public class ModEntitys {
 		
 		registerEntity(EntityFlailSnail.class, "flail_snail", 0x4b0675, 0xf4a511,new ModelFailSnail());
 		registerEntity(EntityWrath.class, "wrath", 0x999999, 0xFF0000,new ModelWrath());
-		registerEntity(EntityFireToad.class, "fire_toad", 0x999999, 0xFF0000,new ModelFireToad());
+		registerEntity(EntityFireToad.class, "fire_toad", 0xba2c26, 0x3e0f3f,new ModelFireToad());
 		
 		createEntity(SUBTERRANEAN_MOBS);
-		EntityRegistry.addSpawn(EntityWrath.class, 50, 1, 2, EnumCreatureType.MONSTER, Biome.getBiomeForId(4));
+		EntityRegistry.addSpawn(EntityWrath.class, 50, 1, 3, EnumCreatureType.MONSTER, Biome.getBiomeForId(4));
 		EntityRegistry.addSpawn(EntityFlailSnail.class, 50, 1, 1, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
 		EntityRegistry.addSpawn(EntityFireToad.class, 50, 1, 1, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
 	}
