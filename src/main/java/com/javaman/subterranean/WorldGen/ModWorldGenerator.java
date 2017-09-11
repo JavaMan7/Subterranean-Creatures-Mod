@@ -2,7 +2,10 @@ package com.javaman.subterranean.WorldGen;
 
 import java.util.Random;
 
+import com.javaman.subterranean.blocks.ModBlocks;
+
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -10,7 +13,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenBigMushroom;
+import net.minecraft.world.gen.feature.WorldGenBush;
+import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenVines;
+import net.minecraft.world.gen.feature.WorldGenWaterlily;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -18,6 +25,10 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 public class ModWorldGenerator implements IWorldGenerator {
 	
 public WorldGenerator bigMushroomGen = new WorldGenBigMushroom();
+WorldGenBush redMushroomFeature = new WorldGenBush((BlockBush) ModBlocks.GLOWSHOOM);
+WorldGenWaterlily worldGenWaterlily = new WorldGenWaterlily();
+WorldGenLakes worldGenLakes = new WorldGenLakes(Blocks.WATER);
+WorldGenVines worldGenVines = new WorldGenVines();
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
@@ -58,17 +69,39 @@ public WorldGenerator bigMushroomGen = new WorldGenBigMushroom();
 	private void generateSub(World world, Random rand, int blockX, int blockZ) {
 		
 		
+		if ((int) (Math.random() * 100) <=20 )
+        {
+            int l6 = rand.nextInt(16) + 8;
+            int k10 = rand.nextInt(16) + 8;
+            int y = getGroundFromAbove(world,blockX+k10,blockZ+l6);
+            this.worldGenVines.generate(world, rand,new BlockPos(blockX+k10,y-1, blockZ+l6));
+        }
 		
+		if ((int) (Math.random() * 100) <=20 )
+        {
+            int l6 = rand.nextInt(16) + 8;
+            int k10 = rand.nextInt(16) + 8;
+            int y = getGroundFromAbove(world,blockX+k10,blockZ+l6);
+            this.worldGenLakes.generate(world, rand,new BlockPos(blockX+k10,y-1, blockZ+l6));
+        }
+		if ((int) (Math.random() * 100) <=50 )
+        {
+            int l6 = rand.nextInt(16) + 8;
+            int k10 = rand.nextInt(16) + 8;
+            int y = getGroundFromAbove(world,blockX+k10,blockZ+l6);
+            this.redMushroomFeature.generate(world, rand,new BlockPos(blockX+k10,y+1, blockZ+l6));
+        }
 		
 		addOreSpawn(Blocks.GLOWSTONE.getDefaultState(), world, rand, blockX, blockZ, 5, 5, 10, 80, 0, 200);
 		// if(net.minecraftforge.event.terraingen.TerrainGen.decorate(world, rand, blockpos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.BIG_SHROOM)) {
-		if ((int) (Math.random() * 100) <=10 )
+		if ((int) (Math.random() * 100) <=20 )
 		        {
 		            int l6 = rand.nextInt(16) + 8;
 		            int k10 = rand.nextInt(16) + 8;
 		            int y = getGroundFromAbove(world,blockX+k10,blockZ+l6);
 		            this.bigMushroomGen.generate(world, rand,new BlockPos(blockX+k10,y+1, blockZ+l6));
 		        }
+		
 		      
 		
 		

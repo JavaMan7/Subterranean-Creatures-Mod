@@ -30,11 +30,14 @@ public static void registerBlock(Block block){
 }
 
 public static Block lapisCobblestone= new LapisCobblestone();
+public static Block GLOWSHOOM= new GlowShroom();
 
 public static void addItem()
 {
-	registerBlock(lapisCobblestone);
 	
+	
+	registerBlock(lapisCobblestone);
+	registerBlock(GLOWSHOOM);
 	
 }
 }

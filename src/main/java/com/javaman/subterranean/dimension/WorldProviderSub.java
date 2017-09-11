@@ -2,7 +2,10 @@ package com.javaman.subterranean.dimension;
 
 import com.javaman.subterranean.biomes.BiomeRegistry;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Biomes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 import net.minecraft.world.DimensionType;
@@ -32,6 +35,9 @@ public class WorldProviderSub extends WorldProvider //WorldProviderSurface
 	    {
 		 	this.hasSkyLight = false;
 	        this.biomeProvider = new BiomeProviderSingle(BiomeRegistry.BiomeGenFireSub);
+	        setSkyRenderer(null);
+	        setCloudRenderer(null);
+	        setWeatherRenderer(null);
 	       // this.doesWaterVaporize = true;
 	       // this.nether = true;
 	    }
@@ -39,6 +45,16 @@ public class WorldProviderSub extends WorldProvider //WorldProviderSurface
 	 public boolean canRespawnHere()
 	    {
 	        return false;
+	    }
+	 @SideOnly(Side.CLIENT)
+	    public Vec3d getFogColor(float p_76562_1_, float p_76562_2_)
+	    {
+	        return new Vec3d(0.20000000298023224D, 0.029999999329447746D, 0.029999999329447746D);
+	    }
+	 @SideOnly(Side.CLIENT)
+	    public Vec3d getSkyColorBody(Entity entityIn, float partialTicks)
+	    {
+		  return new Vec3d(0.20000000298023224D, 0.029999999329447746D, 0.029999999329447746D);
 	    }
 
 }
