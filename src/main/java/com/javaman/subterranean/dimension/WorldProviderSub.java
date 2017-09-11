@@ -30,7 +30,7 @@ public class WorldProviderSub extends WorldProvider //WorldProviderSurface
     }
 	 public void init()
 	    {
-		 	this.hasSkyLight = true;
+		 	this.hasSkyLight = false;
 	        this.biomeProvider = new BiomeProviderSingle(BiomeRegistry.BiomeGenFireSub);
 	       // this.doesWaterVaporize = true;
 	       // this.nether = true;

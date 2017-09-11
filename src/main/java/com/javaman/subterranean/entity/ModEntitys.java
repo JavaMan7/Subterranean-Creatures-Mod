@@ -52,7 +52,7 @@ public class ModEntitys {
 		createEntity(SUBTERRANEAN_MOBS);
 		EntityRegistry.addSpawn(EntityWrath.class, 50, 1, 3, EnumCreatureType.MONSTER, Biome.getBiomeForId(4));
 		EntityRegistry.addSpawn(EntityFlailSnail.class, 50, 1, 1, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
-		EntityRegistry.addSpawn(EntityFireToad.class, 50, 1, 1, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
+		EntityRegistry.addSpawn(EntityFireToad.class, 10, 1, 1, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
 	}
 	
 	public static void registerEntity(Class<? extends Entity> e,String entityName,int solidColor, int spotColor,ModelBase model){

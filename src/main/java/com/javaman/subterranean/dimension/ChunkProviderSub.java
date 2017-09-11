@@ -309,53 +309,10 @@ public class ChunkProviderSub implements IChunkGenerator{
 	       
 	         
 
-	        //chunk.resetRelightChecks();
+	        chunk.resetRelightChecks();
 	        
 	        return chunk;
-	       /*this.rand.setSeed((long)x * 341873128712L + (long)z * 132897987541L);
-	        ChunkPrimer chunkprimer = new ChunkPrimer();
-	       // this.prepareHeights(x, z, chunkprimer);
-	      //  this.buildSurfaces(x, z, chunkprimer);
-	       // this.genNetherCaves.generate(this.world, x, z, chunkprimer);
-	        
-	        int[] last= new int[2]; 
-	        for (int j = 0; j < 16; ++j)
-	        {
-	            for (int k = 0; k < 16; ++k)
-	            {
-	                for (int l = 0; l < 256; ++l)
-	                { 	//	z = (int) Math.cos(Math.sqrt(j* 2+l*2));
-	                	
-	                	
-	                	double y2 = 1* sin(j*(3.1415926/180));
-	                	//System.out.println(y2);
-	                	
-	                    chunkprimer.setBlockState(j,(int)y2,k,Blocks.GRASS.getDefaultState());
-	                	last[0]= j;
-	                	last[1]= (int) y2;
-	                	//int slope = (int) ((j-last[0])/(last[1]-y2));
-	                	 for (int h = 0; h < j-last[0]; ++h) {
-	                		 
-	                		chunkprimer.setBlockState(j,(int) (last[1]-y2),k,Blocks.GRASS.getDefaultState());
-	                	 	}
-	          	       
-	                    }
-	                }
-	            }
-	        
 	       
-
-	        Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
-	        Biome[] abiome = this.world.getBiomeProvider().getBiomes((Biome[])null, x * 16, z * 16, 16, 16);
-	        byte[] abyte = chunk.getBiomeArray();
-
-	        for (int i = 0; i < abyte.length; ++i)
-	        {
-	            abyte[i] = (byte)Biome.getIdForBiome(abiome[i]);
-	        }
-
-	        chunk.resetRelightChecks();
-	        return chunk;*/
 	    }
 
 	    private double[] getHeights(double[] p_185938_1_, int p_185938_2_, int p_185938_3_, int p_185938_4_, int p_185938_5_, int p_185938_6_, int p_185938_7_)
@@ -460,17 +417,9 @@ public class ChunkProviderSub implements IChunkGenerator{
 	       
 	      //  if (this.rand.nextBoolean())
 	       // {
-	       ///     this.bigMushroomGen.generate(this.world, this.rand,finedOpen(this.world, blockpos, i, j));
+	       // this.bigMushroomGen.generate(this.world, this.rand,finedOpen(this.world, blockpos, i, j));
 	       // }
-	      if(net.minecraftforge.event.terraingen.TerrainGen.decorate(world, random, blockpos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.BIG_SHROOM)) {
-	      for (int k2 = 0; k2 < 5; ++k2)
-	        {
-	            int l6 = random.nextInt(16) + 8;
-	            int k10 = random.nextInt(16) + 8;
-	            if(isOpen(this.world, blockpos, i+k10, j+l6))
-	            this.bigMushroomGen.generate(this.world, this.rand,new BlockPos(i+k10,openY, j+l6));
-	        }
-	      }
+	     
 	    /*  int l6 = random.nextInt(16) + 8;
           int k10 = random.nextInt(16) + 8;
 	      if(isOpen(this.world, blockpos, i+k10, j+l6))
