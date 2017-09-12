@@ -6,6 +6,9 @@ import com.javaman.subterranean.blocks.ModBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockVine;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -22,13 +25,14 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class ModWorldGenerator implements IWorldGenerator {
+public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator {
 	
 public WorldGenerator bigMushroomGen = new WorldGenBigMushroom();
 WorldGenBush redMushroomFeature = new WorldGenBush((BlockBush) ModBlocks.GLOWSHOOM);
 WorldGenWaterlily worldGenWaterlily = new WorldGenWaterlily();
 WorldGenLakes worldGenLakes = new WorldGenLakes(Blocks.WATER);
 WorldGenVines worldGenVines = new WorldGenVines();
+static Random rand2 = new Random();
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
@@ -69,14 +73,20 @@ WorldGenVines worldGenVines = new WorldGenVines();
 	private void generateSub(World world, Random rand, int blockX, int blockZ) {
 		
 		
-		if ((int) (Math.random() * 100) <=20 )
+		
+		
+	
+		if ((int) (Math.random() * 100) <=50 )
         {
             int l6 = rand.nextInt(16) + 8;
             int k10 = rand.nextInt(16) + 8;
-            int y = getGroundFromAbove(world,blockX+k10,blockZ+l6);
-            this.worldGenVines.generate(world, rand,new BlockPos(blockX+k10,y-1, blockZ+l6));
+            for(int i=0; i<=3;i++) {
+            vineGen(world, blockX+k10,blockZ+l6);
+            }
         }
-		
+         
+			
+        
 		if ((int) (Math.random() * 100) <=20 )
         {
             int l6 = rand.nextInt(16) + 8;
@@ -152,6 +162,112 @@ WorldGenVines worldGenVines = new WorldGenVines();
 
 		return y;
 	}
+	
+	public  void vineGen(World world, int x, int z)
+	{
+
+
+		int y = 255;
+
+		Block blockAt;
+		BlockPos pos =new BlockPos(x,y,z);
+		boolean foundGround = false;
+		boolean foundSide = false;
+		int r =rand2.nextInt(4);
+		
+		int i =0;
+		int drop = 1;
+		while(!foundGround && y-- >= 31)
+		{
+
+			blockAt = world.getBlockState(new BlockPos(x,y,z)).getBlock();
+			foundGround =  blockAt == Blocks.WATER||blockAt == Blocks.FLOWING_WATER||blockAt == Blocks.GRASS || blockAt == Blocks.SAND || blockAt == Blocks.SNOW || blockAt == Blocks.SNOW_LAYER || blockAt == Blocks.GLASS||blockAt == Blocks.MYCELIUM;
+
+
+		}
+
+
+
+
+		while(!foundSide && ++i <= 48)
+		{
+
+			
+			switch(r) {
+			case 0:x++;
+			case 1:x--;
+			case 2:z++;
+			case 3:z--;
+			}
+		//	System.out.println(r);
+			//System.out.println(new BlockPos(x,y,z));
+			blockAt = world.getBlockState(new BlockPos(x,y,z)).getBlock();
+			foundSide =   blockAt == Blocks.AIR&& world.getBlockState(new BlockPos(x,y-drop,z)).getBlock() == Blocks.AIR;
+
+		}
+
+
+
+		i = 0;
+		BlockPos blockpos$mutableblockpos1 = new BlockPos(x,y,z);
+
+
+
+
+
+		//	System.out.println(world.getBlockState(blockpos$mutableblockpos1).getMaterial() == Material.AIR);
+
+
+		if ((world.getBlockState(new BlockPos(x,y,z)).getBlock() == Blocks.AIR))
+		{
+			BlockPos blockpos3 = blockpos$mutableblockpos1.west();
+			BlockPos blockpos4 = blockpos$mutableblockpos1.east();
+			BlockPos blockpos1 = blockpos$mutableblockpos1.north();
+			BlockPos blockpos2 = blockpos$mutableblockpos1.south();
+
+
+
+			if ( (world.isAirBlock(blockpos3)))
+			{
+				//System.out.println("EAST");
+				addVine(world, blockpos3, BlockVine.EAST);
+
+			}
+
+			if ( world.isAirBlock(blockpos4))
+			{
+				addVine(world, blockpos4, BlockVine.WEST);
+				//System.out.println("WEST");
+			}
+
+			if ( world.isAirBlock(blockpos1))
+			{
+				addVine(world, blockpos1, BlockVine.SOUTH);
+				// System.out.println("SOUTH");
+			}
+
+			if ( world.isAirBlock(blockpos2))
+			{
+				addVine(world, blockpos2, BlockVine.NORTH);
+				//  System.out.println("NORTH");
+			}
+
+		}
+
+		
+	}
+		private  void addVine(World worldIn, BlockPos pos, PropertyBool prop)
+	    {
+	        IBlockState iblockstate = Blocks.VINE.getDefaultState().withProperty(prop, Boolean.valueOf(true));
+	        this.setBlockAndNotifyAdequately(worldIn, pos, iblockstate);
+	        int i = 15+rand2.nextInt(15);;
+
+	        for (BlockPos blockpos = pos.down(); worldIn.isAirBlock(blockpos) && i > 0; --i)
+	        {
+	            setBlockAndNotifyAdequately(worldIn, blockpos, iblockstate);
+	            blockpos = blockpos.down();
+	        }
+	    }
 	public static boolean canSpawnHere(Template template, World world, BlockPos posAboveGround)
 	{
 		int zwidth = template.getSize().getZ();
@@ -173,6 +289,12 @@ WorldGenVines worldGenVines = new WorldGenVines();
 		if (highestBlock > pos.getY() - variation && highestBlock < pos.getY() + variation)
 			return true;
 				
+		return false;
+	}
+
+	@Override
+	public boolean generate(World worldIn, Random rand, BlockPos position) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 }
