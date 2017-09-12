@@ -9,30 +9,23 @@ import java.util.Set;
 
 import com.javaman.subterranean.SubterraneanCreaturesMod;
 import com.javaman.subterranean.biomes.BiomeRegistry;
-import com.javaman.subterranean.client.renderer.entity.EntityRenderRegister;
-import com.javaman.subterranean.client.renderer.entity.RenderSubterraneanCreatures;
-import com.javaman.subterranean.models.ModelFailSnail;
 import com.javaman.subterranean.models.ModelFireToad;
 import com.javaman.subterranean.models.ModelWrath;
+import com.javaman.subtersnean.obj.Loader;
+import com.javaman.subtersnean.obj.ModelCustom;
+import com.javaman.subtersnean.obj.ModelTexture;
+import com.javaman.subtersnean.obj.OBJLoader;
+import com.javaman.subtersnean.obj.RawModel;
+import com.javaman.subtersnean.obj.TextureModel;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.EntityList.EntityEggInfo;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.item.Item;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.BiomeManager.BiomeEntry;
-import net.minecraftforge.common.BiomeManager.BiomeType;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 
 
@@ -40,12 +33,15 @@ public class ModEntitys {
 	public static final HashMap<String,Object[]> SUBTERRANEAN_MOBS = new HashMap<String,Object[]>();
 	static int c = 412879;
 	
-	
+	static Loader loader = new Loader();
 	public static void mainRegistry(){
 		
+		RawModel playerRM = OBJLoader.loadObjModel("lowPolyTree", loader);
 		
+		ModelTexture playerMT = new ModelTexture(loader.loadTexture("lowPolyTree"));
+		TextureModel playerTM = new TextureModel(playerRM, playerMT);
 		
-		registerEntity(EntityFlailSnail.class, "flail_snail", 0x4b0675, 0xf4a511,new ModelFailSnail());
+		registerEntity(EntityFlailSnail.class, "flail_snail", 0x4b0675, 0xf4a511,new ModelCustom(playerRM,playerTM));
 		registerEntity(EntityWrath.class, "wrath", 0x999999, 0xFF0000,new ModelWrath());
 		registerEntity(EntityFireToad.class, "fire_toad", 0xba2c26, 0x3e0f3f,new ModelFireToad());
 		

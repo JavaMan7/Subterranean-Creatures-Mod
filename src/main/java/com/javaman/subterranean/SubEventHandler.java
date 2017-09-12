@@ -2,6 +2,8 @@ package com.javaman.subterranean;
 
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
 import com.javaman.subteranean.items.EssenceOfLifeDrain;
 import com.javaman.subteranean.items.ModItems;
 import com.javaman.subterranean.WorldGen.SubWorldGen;
@@ -31,6 +33,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -96,7 +99,7 @@ public void EntityInteractEvent(EntityInteract e) {
 @SubscribeEvent
 public void AttackEntityEvent(AttackEntityEvent e)
 {
-
+	
 	try {
 
 		if(e.getEntityPlayer().inventory.getCurrentItem().getItem() != null ){
@@ -120,6 +123,12 @@ public void AttackEntityEvent(AttackEntityEvent e)
 		// TODO: handle exception
 	}
 	
+}
+
+@SubscribeEvent
+public void renderWorldLastEvent(RenderWorldLastEvent evt)
+{
+
 }
 /*@SubscribeEvent
 public void LivingAttackEvent(AttackEntityEvent e) {
