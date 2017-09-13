@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class ModWorldGenerator extends WorldGenerator implements IWorldGenerator {
 	
-public WorldGenerator bigMushroomGen = new WorldGenBigMushroom();
+public WorldGenBigGlowShroom bigMushroomGen = new WorldGenBigGlowShroom(ModBlocks.GLOWSHOOM_BLOCK);
 WorldGenBush redMushroomFeature = new WorldGenBush((BlockBush) ModBlocks.GLOWSHOOM);
 WorldGenWaterlily worldGenWaterlily = new WorldGenWaterlily();
 WorldGenLakes worldGenLakes = new WorldGenLakes(Blocks.WATER);

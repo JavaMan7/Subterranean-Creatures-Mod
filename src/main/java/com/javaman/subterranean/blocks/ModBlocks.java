@@ -6,7 +6,9 @@ import com.javaman.subteranean.items.EssenceOfLifeDrain;
 import com.javaman.subteranean.items.FireStaff;
 import com.javaman.subteranean.items.TransDimensionalOrb;
 
+
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -31,13 +33,14 @@ public static void registerBlock(Block block){
 
 public static Block lapisCobblestone= new LapisCobblestone();
 public static Block GLOWSHOOM= new GlowShroom();
-
+public static Block GLOWSHOOM_BLOCK = new GlowShroomBlock(Material.ROCK,MapColor.RED,GLOWSHOOM);
 public static void addItem()
 {
 	
 	
 	registerBlock(lapisCobblestone);
 	registerBlock(GLOWSHOOM);
+	registerBlock(GLOWSHOOM_BLOCK);
 	
 }
 }
