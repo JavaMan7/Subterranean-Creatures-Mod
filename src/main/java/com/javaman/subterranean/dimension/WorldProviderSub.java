@@ -56,5 +56,25 @@ public class WorldProviderSub extends WorldProvider //WorldProviderSurface
 	    {
 		  return new Vec3d(0.20000000298023224D, 0.029999999329447746D, 0.029999999329447746D);
 	    }
+	 public float calculateCelestialAngle(long worldTime, float partialTicks)
+	    {
+		 worldTime = 18000;
+	        int i = (int)(worldTime % 24000L);
+	        float f = ((float)i + partialTicks) / 24000.0F - 0.25F;
+
+	        if (f < 0.0F)
+	        {
+	            ++f;
+	        }
+
+	        if (f > 1.0F)
+	        {
+	            --f;
+	        }
+
+	        float f1 = 1.0F - (float)((Math.cos((double)f * Math.PI) + 1.0D) / 2.0D);
+	        f = f + (f1 - f) / 3.0F;
+	        return f;
+	    }
 
 }

@@ -33,7 +33,7 @@ public static void registerBlock(Block block){
 
 public static Block lapisCobblestone= new LapisCobblestone();
 public static Block GLOWSHOOM= new GlowShroom();
-public static Block GLOWSHOOM_BLOCK = new GlowShroomBlock(Material.ROCK,MapColor.RED,GLOWSHOOM);
+public static Block GLOWSHOOM_BLOCK = new GlowShroomBlock(Material.SPONGE,MapColor.RED,GLOWSHOOM);
 public static void addItem()
 {
 	

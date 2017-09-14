@@ -3,6 +3,7 @@ package com.javaman.subterranean.blocks;
 import java.util.Random;
 
 import com.javaman.subterranean.SubterraneanCreaturesMod;
+import com.javaman.subterranean.WorldGen.WorldGenBigGlowShroom;
 
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDirt;
@@ -10,12 +11,15 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigMushroom;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GlowShroom extends BlockBush implements IGrowable
 {
@@ -120,9 +124,9 @@ public class GlowShroom extends BlockBush implements IGrowable
         {
             worldgenerator = new WorldGenBigMushroom(Blocks.BROWN_MUSHROOM_BLOCK);
         }
-        else if (this == Blocks.RED_MUSHROOM)
+        else if (this == ModBlocks.GLOWSHOOM)
         {
-            worldgenerator = new WorldGenBigMushroom(Blocks.RED_MUSHROOM_BLOCK);
+            worldgenerator = new WorldGenBigGlowShroom(ModBlocks.GLOWSHOOM_BLOCK);
         }
 
         if (worldgenerator != null && worldgenerator.generate(worldIn, rand, pos))
@@ -135,7 +139,15 @@ public class GlowShroom extends BlockBush implements IGrowable
             return false;
         }
     }
-
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
+	 public boolean isOpaqueCube(IBlockState state)
+	    {
+	        return false;
+	    }
     /**
      * Whether this IGrowable can grow
      */
