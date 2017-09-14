@@ -7,6 +7,7 @@ import com.javaman.subterranean.biomes.BiomeRegistry;
 import com.javaman.subterranean.blocks.ModBlocks;
 import com.javaman.subterranean.dimension.DimensionRegister;
 import com.javaman.subterranean.entity.ModEntitys;
+import com.javaman.subterranean.loottable.LootRegister;
 import com.javaman.subtersnean.register.Register;
 
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -39,7 +40,7 @@ public class CommonProxy {
 		//ModItems.createItems();
 		//ModBlocks.createBlocks();
 		ModEntitys.mainRegistry();
-		
+		LootRegister.mainRegister();
 		//MakeProjectile.registerEntity();
 		MinecraftForge.EVENT_BUS.register(new Register());
 		
