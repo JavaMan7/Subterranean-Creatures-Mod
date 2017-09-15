@@ -9,10 +9,9 @@ item.wraith_sword.name=Wraith Sword
 item.fire_toad_gland.name=Fire_Toad Gland
 item.flail_shell_fragment.name=Flail Shell Fragment
 item.essence_of_life_drain.name=Essence Of Life Drain
+
+
 tile.simie_cobblestone.name=Simie Cobblestone
-
-
-
 entity.fire_toad.name=Fire Toad
 entity.flail_snail.name=Flail Snail
 entity.wrath.name=Wraith
