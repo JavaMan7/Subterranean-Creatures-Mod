@@ -36,9 +36,9 @@ public class ModEntitys {
 	static Loader loader = new Loader();
 	public static void mainRegistry(){
 		
-		RawModel playerRM = OBJLoader.loadObjModel("lowPolyTree", loader);
+		RawModel playerRM = OBJLoader.loadObjModel("s", loader);
 		
-		ModelTexture playerMT = new ModelTexture(loader.loadTexture("lowPolyTree"));
+		ModelTexture playerMT = new ModelTexture(loader.loadTexture("s"));
 		TextureModel playerTM = new TextureModel(playerRM, playerMT);
 		
 		registerEntity(EntityFlailSnail.class, "flail_snail", 0x4b0675, 0xf4a511,new ModelCustom(playerRM,playerTM));
