@@ -59,13 +59,7 @@ static Random rand2 = new Random();
 	
 	private void generateOverworld(World world, Random rand, int blockX, int blockZ)
 	{	
-		if ((int) (Math.random() * 100) == 0)
-		{
-			int y = getGroundFromAbove(world, blockX, blockZ);
-			BlockPos pos = new BlockPos(blockX, y, blockZ);
-			WorldGenerator obelisk = new SubWorldGen();
-			obelisk.generate(world, rand, pos);
-		}
+		
 	}
 	
 	private void generateNether(World world, Random rand, int chunkX, int chunkZ) {}
@@ -73,8 +67,21 @@ static Random rand2 = new Random();
 	private void generateSub(World world, Random rand, int blockX, int blockZ) {
 		
 		
+		if ((int) (Math.random() * 100) <= 1)
+		{
+			int y = getGroundFromAbove(world, blockX, blockZ);
+			BlockPos pos = new BlockPos(blockX, y, blockZ);
+			WorldGenerator Tower = new SubWorldGenTower();
+			Tower.generate(world, rand, pos);
+		}
 		
-		
+	/*	if ((int) (Math.random() * 100) <= 5)
+		{
+			int y = getGroundFromAbove(world, blockX, blockZ);
+			BlockPos pos = new BlockPos(blockX, y, blockZ);
+			WorldGenerator obelisk = new SubWorldGen();
+			obelisk.generate(world, rand, pos);
+		};*/
 	
 		if ((int) (Math.random() * 100) <=50 )
         {
@@ -102,7 +109,7 @@ static Random rand2 = new Random();
             this.redMushroomFeature.generate(world, rand,new BlockPos(blockX+k10,y+1, blockZ+l6));
         }
 		
-		addOreSpawn(Blocks.GLOWSTONE.getDefaultState(), world, rand, blockX, blockZ, 5, 5, 10, 80, 0, 200);
+		
 		// if(net.minecraftforge.event.terraingen.TerrainGen.decorate(world, rand, blockpos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.BIG_SHROOM)) {
 		if ((int) (Math.random() * 100) <=20 )
 		        {
@@ -112,7 +119,8 @@ static Random rand2 = new Random();
 		            this.bigMushroomGen.generate(world, rand,new BlockPos(blockX+k10,y+1, blockZ+l6));
 		        }
 		
-		      
+		addOreSpawn(Blocks.GLOWSTONE.getDefaultState(), world, rand, blockX, blockZ, 5, 5, 10, 80, 0, 200);
+		addOreSpawn(Blocks.DIAMOND_ORE.getDefaultState(), world, rand, blockX, blockZ, 5, 5, 10, 80, 0, 200);
 		
 		
 		
@@ -145,7 +153,7 @@ static Random rand2 = new Random();
 		while(!foundGround && y-- >= 31)
 		{
 			Block blockAt = world.getBlockState(new BlockPos(x,y,z)).getBlock();
-			foundGround =  blockAt == Blocks.WATER||blockAt == Blocks.FLOWING_WATER||blockAt == Blocks.GRASS || blockAt == Blocks.SAND || blockAt == Blocks.SNOW || blockAt == Blocks.SNOW_LAYER || blockAt == Blocks.GLASS||blockAt == Blocks.MYCELIUM;
+			foundGround =  blockAt == Blocks.GRASS || blockAt == Blocks.SAND || blockAt == Blocks.SNOW || blockAt == Blocks.SNOW_LAYER || blockAt == Blocks.GLASS||blockAt == Blocks.MYCELIUM;
 		}
 
 		return y;
@@ -278,7 +286,7 @@ static Random rand2 = new Random();
 		boolean corner2 = isCornerValid(world, posAboveGround.add(xwidth, 0, zwidth));
 		
 		// if Y > 20 and all corners pass the test, it's okay to spawn the structure
-		return posAboveGround.getY() > 31 && corner1 && corner2;
+		return posAboveGround.getY() > 5 && corner1 && corner2;
 	}
 	
 	public static boolean isCornerValid(World world, BlockPos pos)

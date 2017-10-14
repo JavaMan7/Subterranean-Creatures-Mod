@@ -35,7 +35,15 @@ import net.minecraft.world.storage.loot.LootTableList;
 
 public class SubWorldGen extends WorldGenerator {
 	 Random r2 =new Random();
-	
+	// ResourceLocation template;
+	//public SubWorldGen(ResourceLocation Template) {
+		
+		
+		//this.template = ;
+		
+		
+		
+	//}
   
     int r;
 	@Override
