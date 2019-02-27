@@ -16,7 +16,10 @@ out
 # gradle
 build
 .gradle
-
+LICENSE.txt
 # other
 eclipse
 run
+
+# Files from Forge MDK
+forge*changelog.txt

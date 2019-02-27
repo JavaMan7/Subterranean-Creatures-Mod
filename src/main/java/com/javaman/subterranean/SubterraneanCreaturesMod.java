@@ -1,45 +1,89 @@
 package com.javaman.subterranean;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.javaman.subterranean.client.renderer.entity.EntityRenderRegister;
+
+import net.minecraft.block.Block;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.InterModComms;
+
 //import com.javaman.subterranean.dimension.ModWorldGen;
 
 
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = SubterraneanCreaturesMod.MODID, version = SubterraneanCreaturesMod.VERSION)
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+@Mod(value = SubterraneanCreaturesMod.MODID)
 public class SubterraneanCreaturesMod
 {
+	private static final Logger LOGGER = LogManager.getLogger();
+	
+	public SubterraneanCreaturesMod() {
+        // Register the setup method for modloading
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        // Register the enqueueIMC method for modloading
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+        // Register the processIMC method for modloading
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+        // Register the doClientStuff method for modloading
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+
+        // Register ourselves for server and other game events we are interested in
+        MinecraftForge.EVENT_BUS.register(this);
+    }
     public static final String MODID = "subterranean_creatures_mod";
     public static final String VERSION = "1.5";
-    @Instance
+   
     public static SubterraneanCreaturesMod instance = new SubterraneanCreaturesMod();//this instance is used by forge to communicate with are class
-    @SidedProxy(clientSide="com.javaman.subterranean.ClientProxy",
-			serverSide="com.javaman.subterranean.ServerProxy")
+   
     
 public static CommonProxy proxy;
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent e) {
-    	this.proxy.preInit(e);//call Common Proxy
-    	
+	private void setup(final FMLCommonSetupEvent event)
+	{
+		
+	
+	
+	}
+	private void doClientStuff(final FMLClientSetupEvent event) {
+        // do something that can only be done on the client
+		EntityRenderRegister.registerEntityRenderer();
+        LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
     }
-    @EventHandler
-    public void init(FMLInitializationEvent e)
-    {	this.proxy.init(e);
+	 private void enqueueIMC(final InterModEnqueueEvent event)
+    {	
     	
 		// some example code
     	//GameRegistry.registerWorldGenerator(new ModWorldGen(), 0);
-        System.out.println("SubterraneanCreaturesMod >> They lurk in the Deep");
+		 InterModComms.sendTo(MODID,"helloworld",() -> { LOGGER.info("Hello world from SubterraneanCreaturesMod"); return "SubterraneanCreaturesMod >> They lurk in the Deep";});
     }
     
-
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent e) {
-    	this.proxy.postInit(e);
+	 private void processIMC(final InterModProcessEvent event)
+	    {
+		 
+		 
+		 
+		 
+	    }
+	  @SubscribeEvent
+	 public void onServerStarting(FMLServerStartingEvent event){
+    	
     }
+	  @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
+	    public static class RegistryEvents {
+	        @SubscribeEvent
+	        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
+	            // register a new block here
+	            LOGGER.info("HELLO from Register Block");
+	        }
+   }
 }

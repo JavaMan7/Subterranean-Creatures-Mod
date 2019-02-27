@@ -1,8 +1,8 @@
 package com.javaman.subterranean.entity;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
@@ -11,18 +11,11 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.EntityAIZombieAttack;
-import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -30,7 +23,7 @@ public class EntityFireToad extends EntityMob   {
 	int FireballStrength = 1;
 	
 	public EntityFireToad(World worldIn) {
-		super(worldIn);
+		super(EntityType.SKELETON, worldIn);
 		this.setSize(0.8F, 0.8F);
 	}
 	
@@ -100,7 +93,7 @@ public class EntityFireToad extends EntityMob   {
              EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
              double d0 = 64.0D;
              try {
-             if (entitylivingbase.getDistanceSqToEntity(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
+             if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
              {
                  World world = this.parentEntity.world;
                  ++this.attackTimer;
@@ -115,7 +108,7 @@ public class EntityFireToad extends EntityMob   {
                      double d1 = 4.0D;
                      Vec3d vec3d = this.parentEntity.getLook(1.0F);
                      double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * 4.0D);
-                     double d3 = entitylivingbase.getEntityBoundingBox().minY + (double)(entitylivingbase.height / 2.0F) - (0.5D + this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F));
+                     double d3 = entitylivingbase.getBoundingBox().minY + (double)(entitylivingbase.height / 2.0F) - (0.5D + this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F));
                      double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
                      //world.playEvent((EntityPlayer)null, 1016, new BlockPos(this.parentEntity), 0);
                      EntityLargeFireball entitylargefireball = new EntityLargeFireball(world, this.parentEntity, d2, d3, d4);

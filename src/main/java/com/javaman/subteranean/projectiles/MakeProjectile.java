@@ -5,9 +5,6 @@ package com.javaman.subteranean.projectiles;
 
 import com.javaman.subterranean.SubterraneanCreaturesMod;
 
-import net.minecraft.entity.EntityList;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
-
 
 
 public class MakeProjectile {

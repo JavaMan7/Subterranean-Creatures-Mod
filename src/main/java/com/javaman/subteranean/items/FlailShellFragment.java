@@ -5,19 +5,11 @@ import com.javaman.subterranean.SubterraneanCreaturesMod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class FlailShellFragment extends Item{
+public class FlailShellFragment extends BasicItem{
 	public  FlailShellFragment()
 	{
-
-		// TODO Auto-generated constructor stub
-	
-		this.setUnlocalizedName("flail_shell_fragment");
-		this.setRegistryName(SubterraneanCreaturesMod.MODID,"flail_shell_fragment");
+		super(SubterraneanCreaturesMod.MODID+":flail_shell_fragment");
 		
-		 
-		 this.setMaxStackSize(64);
-		 
-		 this.setCreativeTab(CreativeTabs.MISC);
 		
 		
 		

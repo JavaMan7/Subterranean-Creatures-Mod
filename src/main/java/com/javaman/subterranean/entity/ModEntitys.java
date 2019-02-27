@@ -16,11 +16,9 @@ import com.javaman.subterranean.models.ModelFireToad;
 import com.javaman.subterranean.models.ModelWrath;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
+import  net.minecraft.client.renderer.entity.model.ModelBase;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.EntityList.EntityEggInfo;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -29,10 +27,7 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 
 
@@ -50,12 +45,12 @@ public class ModEntitys {
 		registerEntity(EntityFireToad.class, "fire_toad", 0xba2c26, 0x3e0f3f,new ModelFireToad());
 		
 		createEntity(SUBTERRANEAN_MOBS);
-		EntityRegistry.addSpawn(EntityWrath.class, 50, 1, 3, EnumCreatureType.MONSTER, Biome.getBiomeForId(4));
+		EntityRegistry.addSpawn(EntityWrath.class, 50, 1, 3, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
 		EntityRegistry.addSpawn(EntityFlailSnail.class, 50, 1, 1, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
 		EntityRegistry.addSpawn(EntityFireToad.class, 10, 1, 1, EnumCreatureType.MONSTER, BiomeRegistry.BiomeGenFireSub);
 	}
 	
-	public static void registerEntity(Class<? extends Entity> e,String entityName,int solidColor, int spotColor,ModelBase model){
+	public static void registerEntity(Class<? extends Entity> e,String entityName,int solidColor, int spotColor, ModelBase model){
 		 Object[] object = new Object[6];
 		 object[0] = e;
 		 object[1] = model;

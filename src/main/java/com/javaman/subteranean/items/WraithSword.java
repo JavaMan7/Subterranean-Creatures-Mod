@@ -4,6 +4,7 @@ import com.javaman.subterranean.SubterraneanCreaturesMod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
@@ -11,7 +12,7 @@ import net.minecraft.world.World;
 public class WraithSword extends ItemSword{
 	static ToolMaterial toolMaterial   = ToolMaterial.DIAMOND;
 	public WraithSword() {
-		super(toolMaterial);
+		super(I, maxDamage, attackDamage, null);
 		
 		this.setUnlocalizedName("wraith_sword");
 		this.setRegistryName(SubterraneanCreaturesMod.MODID+":"+"wraith_sword");

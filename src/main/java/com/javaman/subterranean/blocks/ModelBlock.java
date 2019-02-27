@@ -1,23 +1,9 @@
 package com.javaman.subterranean.blocks;
 
-import com.javaman.subterranean.SubterraneanCreaturesMod;
+public class ModelBlock //extends Block 
+{
 
-
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-public class ModelBlock extends Block {
-
-    public ModelBlock() {
+ /*   public ModelBlock() {
         super(Material.ROCK);
         setUnlocalizedName(SubterraneanCreaturesMod.MODID + ".modelblock");
         setRegistryName("modelblock");
@@ -42,5 +28,5 @@ public class ModelBlock extends Block {
     @Override
     public boolean isOpaqueCube(IBlockState blockState) {
         return false;
-    }
+    }*/
 }

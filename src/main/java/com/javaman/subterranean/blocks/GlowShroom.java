@@ -1,36 +1,13 @@
 package com.javaman.subterranean.blocks;
 
-import java.util.Random;
-
-import com.javaman.subterranean.SubterraneanCreaturesMod;
-import com.javaman.subterranean.WorldGen.WorldGenBigGlowShroom;
-
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockDirt;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenBigMushroom;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-public class GlowShroom extends BlockBush implements IGrowable
+public class GlowShroom //extends BlockBush implements IGrowable
 {
-    protected static final AxisAlignedBB MUSHROOM_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.4000000059604645D, 0.699999988079071D);
+ /*  protected static final AxisAlignedBB MUSHROOM_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.4000000059604645D, 0.699999988079071D);
 
     protected GlowShroom()
-    {	this.setLightLevel(0.8f);
+    {	super(Properties.create(Material.WOOD));
     	this.setRegistryName(SubterraneanCreaturesMod.MODID+":"+"glow_shroom_blue");
-    	this.setUnlocalizedName("glow_shroom_blue");
-        this.setTickRandomly(true);
-        this.setCreativeTab(CreativeTabs.DECORATIONS);
+    	
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -82,9 +59,7 @@ public class GlowShroom extends BlockBush implements IGrowable
         return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos, this.getDefaultState());
     }
 
-    /**
-     * Return true if the block can sustain a Bush
-     */
+   
     protected boolean canSustainBush(IBlockState state)
     {
         return state.isFullBlock();
@@ -148,9 +123,7 @@ public class GlowShroom extends BlockBush implements IGrowable
 	    {
 	        return false;
 	    }
-    /**
-     * Whether this IGrowable can grow
-     */
+   
     public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
     {
         return true;
@@ -164,5 +137,5 @@ public class GlowShroom extends BlockBush implements IGrowable
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
     {
         this.generateBigMushroom(worldIn, pos, state, rand);
-    }
+    }*/
 }

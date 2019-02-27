@@ -7,38 +7,28 @@ import com.javaman.subterranean.dimension.DimensionRegister;
 
 
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.DimensionManager;
 
 public class TransDimensionalOrb  extends  Item{
 	
 
-	public TransDimensionalOrb( ) {
-		
+	public TransDimensionalOrb() {
+		super(new Properties().group(ItemGroup.COMBAT));
 		// TODO Auto-generated constructor stub
-		this.setUnlocalizedName("trans_dimensional_orb");
+		
 		
 		this.setRegistryName(SubterraneanCreaturesMod.MODID+":"+"trans_dimensional_orb");
-		 this.setMaxDamage(384);
+		 
 		
-		 this.setMaxStackSize(64);
-		 this.setCreativeTab(CreativeTabs.COMBAT);
+	
 		 
 	}
 
@@ -56,7 +46,7 @@ public class TransDimensionalOrb  extends  Item{
 			
 			
 			
-			if(thePlayer.dimension != DimensionRegister.dimensionId&& DimensionManager.isDimensionRegistered(DimensionRegister.dimensionId))
+			if(thePlayer.dimension.getId() != DimensionRegister.dimensionId)
 			{
 				
 				
